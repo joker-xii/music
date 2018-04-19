@@ -40,7 +40,7 @@ function hideall() {
 function get_album(id) {
         $.ajax({
             type: 'post',
-            url: "query_album.php",
+            url: "/music/",
             data: '&album_id=' + id,
             success: function (data) {
                 var docList = document.getElementById('album_list_items');
@@ -85,11 +85,12 @@ function get_album(id) {
 }
 
 function select_song(id,from_album) {
+
     song_id_now = id;
     $.ajax({
         type: "post",
-        url: "get_song_by_id.php",
-        data: '&uta_id=' + id,
+        url: '/music/',
+        data: '&id=' + id,
         success: function (ret) {
             var obj = JSON.parse(ret);
             // console.log(obj);
@@ -108,8 +109,8 @@ function select_song(id,from_album) {
                 document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
                 var share=document.getElementById('result_text');
                 var href=window.location.href;
-                href=href.substr(0, href.lastIndexOf('/'))+"/?id="+obj.song.id;
-                share.innerHTML=share.href=href;
+                href=href.substr(0, href.lastIndexOf('/'))+"/?share="+obj.song.id;
+                share.innerHTML=href;
             }
             // console.log(times);
             showPlayer();
@@ -147,13 +148,12 @@ function select_song(id,from_album) {
         }
     });
 }
-
 function submitForm() {
     var form = $("form");
     var data = form.serialize();
     $.ajax({
         type: form.attr('method'),
-        url: "query.php",
+        url: "/music/",
         data: data,
         success: function (data) {
             // setSwitch(true);
@@ -200,4 +200,4 @@ $("document").ready(function (e) {
         submitForm();
     });
 
-})
+});
