@@ -1,6 +1,3 @@
-
-
-
 $( function () {
     var bg = document.getElementById("back_white");
 

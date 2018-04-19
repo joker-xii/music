@@ -14,83 +14,14 @@
     </script>
     <script type="text/javascript" src="switchbg.js"></script>
     <script src="submit.js" type="text/javascript"></script>
-    <style type="text/css">
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
-
-        /* width */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        .background-transparent {
-            background-color: transparent;
-            height: 100%;
-            width: 100%;
-        }
-
-        .background-white {
-            background-color: white;
-            height: 100%;
-            width: 100%;
-        }
-
-        .blur_back {
-            filter: blur(80px);
-            -webkit-filter: blur(80px);
-            -moz-filter: blur(80px);
-            -o-filter: blur(80px);
-        }
-
-        .blur_back_trans {
-            /*background: rgba(255, 255, 255, 0.5);*/
-            transition: 1.5s filter ease-in;
-            -moz-transition: 1.5s -moz-filter ease-in; /* Firefox 4 */
-            -webkit-transition: 1.5s -webkit-filter ease-in; /* Safari and Chrome */
-            -o-transition: 1.5s -o-filter ease-in; /* Opera */
-        }
-
-        .none_back {
-            background: rgba(255, 255, 255, 0);
-        }
-
-        .jilao {
-            text-align: center;
-        }
-
-        .back_style {
-            width: 100%;
-            height: 100%;
-            background: url(back/1.png) no-repeat right center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-    </style>
+    <link href="styles.css" media="all" rel="stylesheet"/>
 
 </head>
 <body id="page_body">
 
-<div id="back_white" class="blur_back_trans back_style" style="position: absolute;bottom: 0">
+<div id="back_white" class="blur_back_trans back_style">
 </div>
+<div id="album_back" class="blur_album_back transparent_back_trans back_style transparent_back"></div>
 <div style="position: absolute;width: 100vw;height: 100vh ;bottom: 0;background-color: rgba(255,255,255,0.3)"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
@@ -121,56 +52,43 @@
                     LIST
                 </button>
             </li>
-            <!--                    <li class="nav-item dropdown">-->
-            <!--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
-            <!--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-            <!--                            Dropdown-->
-            <!--                        </a>-->
-            <!--                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-            <!--                            <a class="dropdown-item" href="#">Action</a>-->
-            <!--                            <a class="dropdown-item" href="#">Another action</a>-->
-            <!--                            <div class="dropdown-divider"></div>-->
-            <!--                            <a class="dropdown-item" href="#">Something else here</a>-->
-            <!--                        </div>-->
-            <!--                    </li>-->
-            <!--                    <li class="nav-item">-->
-            <!--                        <a class="nav-link disabled" href="#">Disabled</a>-->
-            <!--                    </li>-->
         </ul>
+
+
         <form class="form-inline my-2 my-lg-0" id="submit_form">
             <input class="form-control mr-sm-2" type="search" name="uta_name" id="uta_name" placeholder="Search"
                    aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" name="query" id="query" type="submit">Search
+            <button class="btn btn-outline-success my-2" name="query" id="query" type="submit">Search
             </button>
         </form>
     </div>
 </nav>
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
-    <!--    <div class="row">-->
-
     <div class="collapse" id="player">
         <div class="row">
             <div class="card col-sm-3" style="width: 25%;background-color: transparent;border: solid;border-width: 1px;
                     border-left-color:transparent;border-top-color: transparent;border-bottom-color: transparent;border-right-color: rgba(0,0,0,0.1)">
-                <img class="card-img-top rounded" id="song_img" alt="Card image cap">
+                <img class="card-img-top rounded" id="song_img" onclick="showAlbum()" alt="Card image cap">
                 <div class="card-body">
                     <hr class="my-1"/>
                     <h5 class="card-title" id="song_name"></h5>
                     <hr class="my-1"/>
-                    <p class="card-text" id="album_name"></p>
+                    <p class="card-text">
+                        <a onclick="showAlbum()" id="album_name">
+                        </a>
+                    </p>
                     <hr class="my-3"/>
-                    <div class="btn-group " role="group" aria-label="Basic example">
-                        <button class="btn btn-info btn-secondary" id="album_prev">&lt;</button>
-                        <button class="btn btn-secondary" id="simple_player" style="background:lightgreen;"
-                                onclick="playOrPause()">
-                            <span id="playing">&#9655; PLAYING</span>
-                            <audio controls id="hoshi_no_uta" loop="loop"
-                                   style="opacity: 0;z-index: -1;width: 0px;height:0px;">
-                                <source id="song_source" type="audio/mpeg">
-                            </audio>
-                        </button>
-                        <button class="btn btn-info btn-secondary" id="album_next">&gt;</button>
-                    </div>
+                    <button class="btn btn-outline-primary player_btn"  id="simple_player" onclick="playOrPause()">
+                        <span id="playing">&#9655; PLAYING</span>
+                        <audio controls id="hoshi_no_uta" loop="loop"
+                               style="opacity: 0;z-index: -1;width: 0px;height:0px;">
+                            <source id="song_source" type="audio/mpeg">
+                        </audio>
+                    </button>
+                    <hr class="my-1"/>
+                    <button type="button" class=" btn btn-outline-primary my-2"  style="width: 100%" data-toggle="modal" data-target="#show_result">
+                        SHARE
+                    </button>
 
                 </div>
             </div>
@@ -212,12 +130,48 @@
     </div>
     <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
         <div class="collapse" id="album_list">
+            <div style='width: 80vw' class="list-group ">
+                <a onclick='showPlayer()' class="list-group-item list-group-item-action none_back">
+                    <div class='row'>
+                        <div class=' col-sm-offset-1 col-sm-3'>
+                            <img id="list_album_pic" style='width: 20vh;height: 20vh' class='rounded'/>
+                        </div>
+                        <div class='col-sm-offset-1 col-sm-6'>
+                            <h1 id="list_album_name"></h1>
+                            <p id="list_album_company"></p>
+                            <p id="list_album_date"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div style='width: 80vw' class="list-group " id="album_list_items">
+
+            </div>
         </div>
     </div>
 
     <!--    </div>-->
 </div>
-
+<div class="modal fade" id="show_result" tabindex="-1" role="dialog" aria-labelledby="show_result" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="result_title">
+                    SHARE THIS WEBSITE
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <a id="result_text" href="http://jokerlab.tk/music/">jokerlab.tk/music/</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="../Scripts/bootstrap.js"></script>
 
@@ -233,6 +187,6 @@
 <?php
 if (isset($_REQUEST['id'])) {
     echo '<script>';
-    echo "select_song(" . $_REQUEST['id'] . " );";
+    echo "select_song(" . $_REQUEST['id'] . ",false );";
     echo '</script>';
 }

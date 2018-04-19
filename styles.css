@@ -1,0 +1,91 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.background-transparent {
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+}
+
+.background-white {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.blur_back {
+    filter: blur(80px);
+    -webkbackit-filter: blur(80px);
+    -moz-filter: blur(80px);
+    -o-filter: blur(80px);
+}
+.blur_album_back {
+    filter: blur(50px);
+    -webkit-filter: blur(50px);
+    -moz-filter: blur(50px);
+    -o-filter: blur(50px);
+}
+
+.blur_back_trans {
+    transition: 1.5s filter ease-in;
+    -moz-transition: 1.5s -moz-filter ease-in; /* Firefox 4 */
+    -webkit-transition: 1.5s -webkit-filter ease-in; /* Safari and Chrome */
+    -o-transition: 1.5s -o-filter ease-in; /* Opera */
+}
+
+.none_back {
+    background: rgba(255, 255, 255, 0);
+}
+
+.jilao {
+    text-align: center;
+}
+
+.player_btn{
+    width: 100%;
+    height: 10vh;
+    background-color:rgba(144,238,144,0.4);
+    transition: 0.5s background-color ease-in;
+}
+.transparent_back_trans{
+    transition: 1.5s opacity ease-in;
+    -moz-transition: 1.5s -moz-opacity ease-in; /* Firefox 4 */
+    -webkit-transition: 1.5s -webkit-opacity ease-in; /* Safari and Chrome */
+    -o-transition: 1.5s -o-opacity ease-in; /* Opera */
+}
+
+.back_style {
+    width: 100%;
+    height: 100%;
+    background: url(back/1.png) no-repeat right center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;bottom: 0
+}
+.transparent_back{
+    opacity: 0;
+}

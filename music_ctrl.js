@@ -5,13 +5,13 @@ function playOrPause() {
     if (x.paused || x.ended) {
         x.play();
         name.innerHTML = '&#9655; PLAYING';
-        p.style = "background:lightgreen";
+        p.style.setProperty('background-color',"rgba(144,238,144,0.4)");
         paused=false;
         // console.log("play");
     } else {
         x.pause();
-        name.innerHTML = '&#10072; &#10072; PAUSED';
-        p.style = "background:orange";
+        name.innerHTML = '&#10072; &#10072; PAUSED'
+        p.style.setProperty('background-color',"rgba(255,165,0,0.4)");
         // console.log("pause");
         paused=true;
     }

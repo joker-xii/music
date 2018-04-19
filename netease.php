@@ -1,4 +1,5 @@
 <?php
+//Copied from https://github.com/whoisnian/music/
 function get_by_curl($url, $site)
 {
     $ch = curl_init();
