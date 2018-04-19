@@ -28,7 +28,7 @@
 <script type="text/javascript" src="music_ctrl.js">
 
 </script>
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light" style="background:linear-gradient(to bottom,white 70%,transparent)">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
             <code>MUSIC</code> !
         </h1></a>

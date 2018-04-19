@@ -44,11 +44,18 @@ function mouse_progress(e) {
 function loop(lyrics, allLyrics,thisId) {
     if (!(thisId === song_id_now)) return;
     if(!paused) {
-        var interval = 1000;
+        var interval = 500;
         var prog = document.getElementById('music_progress');
         var x = document.getElementById('hoshi_no_uta');
         prog.style.width = (x.currentTime * 100 / x.duration) + "%";
-        prog.innerHTML = "<span style='color:white;font-size: large;'>" + Math.floor(x.currentTime) + 's/' + Math.floor(x.duration) + 's<span>';
+        var currTime= Math.floor(x.currentTime);
+        var duration= Math.floor(x.duration);
+        var showCur='',showDur='';
+        if(currTime>60)showCur+=Math.floor(currTime/60)+':';
+        if(duration>60)showDur+=Math.floor(duration/60)+':';
+        showCur+=(currTime%60)<10?('0'+(currTime%60)):(currTime%60);
+        showDur+=(duration%60)<10?('0'+(duration%60)):(duration%60);
+        prog.innerHTML = "<span style='color:white;font-size: large;'>" + showCur +'/' + showDur + '<span>';
         if (lyrics) {
             var lineNow = 0;
             for (line in lyrics) {

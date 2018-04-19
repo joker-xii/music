@@ -105,7 +105,9 @@ function select_song(id,from_album) {
                 album.innerHTML =  obj.song.album.name ;
                 var img = document.getElementById('song_img');
                 img.src = obj.song.album.picUrl;
-                document.getElementById('album_back').style.background="url("+obj.song.album.picUrl+") no-repeat right center fixed";
+                var aback =document.getElementById('album_back');
+                aback.style.background="url("+obj.song.album.picUrl+") no-repeat center center fixed";
+                aback.style.backgroundSize='cover';
                 document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
                 var share=document.getElementById('result_text');
                 var href=window.location.href;
