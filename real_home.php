@@ -23,12 +23,12 @@
 <div id="back_white" class="blur_back_trans back_style">
 </div>
 <div id="album_back" class="blur_album_back transparent_back_trans back_style transparent_back"></div>
-<div style="position: absolute;width: 100vw;height: 100vh ;bottom: 0;background-color: rgba(255,255,255,0.3)"></div>
+<div style="position: absolute;width: 100vw;height: 100vh ;bottom: 0;background-color: rgba(255,255,255,0.3);opacity: 0;" id="table_layer"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
 
 </script>
-<nav class="navbar navbar-expand-sm navbar-light" style="background:linear-gradient(to bottom,white 70%,transparent)">
+<nav class="navbar navbar-expand-sm navbar-light navbar_effect" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
             <code>MUSIC</code> !
         </h1></a>

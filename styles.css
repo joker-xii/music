@@ -67,7 +67,11 @@ html, body {
     left: 0;
     bottom: 0;
     width: 100%;
+    filter:blur(100px);
     /*background-color: black;*/
+}
+.navbar_effect{
+    opacity: 0;
 }
 .player_btn{
     position: absolute;
