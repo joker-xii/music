@@ -150,7 +150,7 @@
 <div class="navbar fixed-bottom" hidden id="footer" style="opacity: 0">
     <div class="row" style="width: 100vw">
         <div  style="width: 20vw;">
-            <button class="btn  player_btn "  id="simple_player" onclick="playOrPause()">
+            <button class="btn btn-outline-light player_btn "  id="simple_player" onclick="playOrPause()">
                 <span id="playing">&#9655;</span>
                 <audio controls id="hoshi_no_uta" loop="loop"
                        style="opacity: 0;z-index: -1;width: 0px;height:0px;">

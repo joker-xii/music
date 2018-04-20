@@ -224,7 +224,8 @@ $("document").ready(function (e) {
         e.preventDefault();
         submitForm();
     });
-    $('body').mousemove(function (e) {
+    var thisBody=$('body');
+    thisBody.mousemove(function (e) {
         var docHeight=window.innerHeight;
         docHeight/=3;
         var now=e.pageY;
@@ -239,5 +240,24 @@ $("document").ready(function (e) {
         var footer=document.getElementById('footer');
         footer.style.opacity=percent;
         footer.style.background='linear-gradient(to top,white '+(p2*100)+'%,transparent)';
+    });
+    thisBody.keydown(function (e) {
+        var target = $(e.target);
+        if(!target.is('input')) {
+            var keynum;
+            var keychar;
+            if (window.event) {
+                keynum = e.keyCode;
+            }
+            else if (e.which) {
+                keynum = e.which;
+            }
+
+            keychar = String.fromCharCode(keynum);
+            console.log(keychar);
+            if (keychar === ' ') {
+                playOrPause();
+            }
+        }
     });
 });
