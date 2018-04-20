@@ -4,14 +4,14 @@ function playOrPause() {
     var name = document.getElementById('playing');
     if (x.paused || x.ended) {
         x.play();
-        name.innerHTML = '&#9655; PLAYING';
-        p.style.setProperty('background-color',"rgba(144,238,144,0.4)");
+        name.innerHTML = '&#9655;';
+        p.style.setProperty('background-color',"rgba(144,238,144,1)");
         paused=false;
         // console.log("play");
     } else {
         x.pause();
-        name.innerHTML = '&#10072; &#10072; PAUSED'
-        p.style.setProperty('background-color',"rgba(255,165,0,0.4)");
+        name.innerHTML = '&#10072; &#10072;'
+        p.style.setProperty('background-color',"rgba(255,165,0,1)");
         // console.log("pause");
         paused=true;
     }
@@ -41,21 +41,24 @@ function mouse_progress(e) {
 }
 
 
-function loop(lyrics, allLyrics,thisId) {
-    if (!(thisId === song_id_now)) return;
+function loop(thisId, lyrics, allLyrics,transTime,allTrans) {
+    if (!(thisId === song_id_now)) {
+        console.log('return'+thisId);
+        return;
+    }
+    var interval = 500;
+    var prog = document.getElementById('music_progress');
+    var x = document.getElementById('hoshi_no_uta');
+    prog.style.width = (x.currentTime * 100 / x.duration) + "%";
+    var currTime= Math.floor(x.currentTime);
+    var duration= Math.floor(x.duration);
+    var showCur='',showDur='';
+    if(currTime>60)showCur+=Math.floor(currTime/60)+':';
+    if(duration>60)showDur+=Math.floor(duration/60)+':';
+    showCur+=(currTime%60)<10?('0'+(currTime%60)):(currTime%60);
+    showDur+=(duration%60)<10?('0'+(duration%60)):(duration%60);
+    prog.innerHTML = "<span style='color:white;font-size: large;'>" + showCur +'/' + showDur + '<span>';
     if(!paused) {
-        var interval = 500;
-        var prog = document.getElementById('music_progress');
-        var x = document.getElementById('hoshi_no_uta');
-        prog.style.width = (x.currentTime * 100 / x.duration) + "%";
-        var currTime= Math.floor(x.currentTime);
-        var duration= Math.floor(x.duration);
-        var showCur='',showDur='';
-        if(currTime>60)showCur+=Math.floor(currTime/60)+':';
-        if(duration>60)showDur+=Math.floor(duration/60)+':';
-        showCur+=(currTime%60)<10?('0'+(currTime%60)):(currTime%60);
-        showDur+=(duration%60)<10?('0'+(duration%60)):(duration%60);
-        prog.innerHTML = "<span style='color:white;font-size: large;'>" + showCur +'/' + showDur + '<span>';
         if (lyrics) {
             var lineNow = 0;
             for (line in lyrics) {
@@ -70,7 +73,7 @@ function loop(lyrics, allLyrics,thisId) {
             if (lineNow >= 0) {
                 var tmp = "";
                 // console.log("NONE---------------");
-                var magic_begin = Math.max(0, lineNow - 2), magic_end = lineNow + 3;
+                var magic_begin = Math.max(0, lineNow - 3), magic_end = lineNow + 4;
                 if (magic_end >= allLyrics.length) magic_end = allLyrics.length;
                 // console.log("magic: " +magic_begin+ " "+magic_end)
                 for (var line_added = magic_begin; line_added < magic_end; line_added += 1) {
@@ -84,6 +87,19 @@ function loop(lyrics, allLyrics,thisId) {
                 lyricNow.style.backgroundColor = 'rgba(255,255,255,0.5)';
                 lyricNow.style.fontSize = 'x-large';
             }
+            if(transTime) {
+                var transLine = -1;
+                for (line in transTime) {
+                    if (transTime[line] != null) {
+                        if (transTime[line] > x.currentTime) break;
+                        transLine = line;
+                    }
+                }
+                if (transLine >= 0) {
+                    document.getElementById('translate').innerHTML = allTrans[transLine];
+                    // console.log(allTrans[transLine]);
+                }
+            }
         }else {
             document.getElementById('lyric').innerHTML='';
         }
@@ -91,7 +107,7 @@ function loop(lyrics, allLyrics,thisId) {
     // console.log((x.currentTime/x.duration));
     requestAnimationFrame(function () {
         setTimeout(function () {
-            loop(lyrics, allLyrics,thisId);
+            loop(thisId, lyrics, allLyrics,transTime,allTrans);
         }, interval);
     })
 }

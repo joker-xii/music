@@ -79,14 +79,7 @@
                         </a>
                     </p>
                     <hr class="my-1"/>
-                    <button class="btn btn-outline-primary player_btn"  id="simple_player" onclick="playOrPause()">
-                        <span id="playing">&#9655; PLAYING</span>
-                        <audio controls id="hoshi_no_uta" loop="loop"
-                               style="opacity: 0;z-index: -1;width: 0px;height:0px;">
-                            <source id="song_source" type="audio/mpeg">
-                        </audio>
-                    </button>
-                    <hr class="my-1"/>
+
                     <button type="button" class=" btn btn-outline-primary my-2"  style="width: 100%" data-toggle="modal" data-target="#show_result">
                         SHARE
                     </button>
@@ -94,33 +87,12 @@
                 </div>
             </div>
             <div class="col-sm-offset-1 col-sm-8 ">
-                <div style="height: 50vh;overflow: hidden;padding-top: 10vh;">
+                <div style="height: 70vh;overflow: hidden;padding-top: 5vh;">
                     <div id="lyric" style="height: inherit;overflow: visible;position: absolute;">
                     </div>
                 </div>
-
-                <hr class="my-4"/>
-                <div class="row">
-                    <div class=" col-sm-8 ">
-                        <div class="progress border border-info"
-                             style="height: 10vh;background-color: transparent;" id="music_prog_border"
-                             onclick="mouse_progress(event)">
-                            <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated jilao"
-                                 id="music_progress"
-                                 role="progressbar" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="progress border border-success "
-                             style="height: 10vh;background-color: transparent;" id="music_vol_border"
-                             onclick="mouse_volume(event)">
-                            <div class="progress-bar progress-bar-striped jilao  bg-success " id="volume"
-                                 role="progressbar" style="width: 50%;">VOLUME
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <hr class="my-1"/>
+                <span id="translate" style="font-size: larger"></span>
             </div>
         </div>
         <hr class="my-4"/>
@@ -175,7 +147,37 @@
         </div>
     </div>
 </div>
-
+<div class="navbar fixed-bottom" hidden id="footer" style="opacity: 0">
+    <div class="row" style="width: 100vw">
+        <div  style="width: 20vw;">
+            <button class="btn  player_btn "  id="simple_player" onclick="playOrPause()">
+                <span id="playing">&#9655;</span>
+                <audio controls id="hoshi_no_uta" loop="loop"
+                       style="opacity: 0;z-index: -1;width: 0px;height:0px;">
+                    <source id="song_source" type="audio/mpeg">
+                </audio>
+            </button>
+        </div>
+        <div style="width: 65vw;">
+            <div class="progress border border-info "
+                 style="height: 5vh;background-color: transparent;" id="music_prog_border"
+                 onclick="mouse_progress(event)">
+                <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated jilao"
+                     id="music_progress"
+                     role="progressbar" style="width: 0%;"></div>
+            </div>
+        </div>
+        <div style="width: 10vw;padding-left: 3vw">
+            <div class="progress border border-primary "
+                 style="height: 5vh;background-color: transparent;" id="music_vol_border"
+                 onclick="mouse_volume(event)">
+                <div class="progress-bar jilao  bg-primary" id="volume"
+                     role="progressbar" style="width: 50%;">VOLUME
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="../Scripts/bootstrap.js"></script>
 
 <!--<script src="firestar2.js"></script>-->

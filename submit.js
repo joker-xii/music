@@ -116,6 +116,7 @@ function select_song(id,from_album) {
             }
             // console.log(times);
             showPlayer();
+            document.getElementById('footer').removeAttribute('hidden');
             var x = document.getElementById('hoshi_no_uta');
              // console.log( document.getElementById('volume').style.width.toString());
              x.volume =0.5;
@@ -129,7 +130,7 @@ function select_song(id,from_album) {
             }
             if (obj.song.lyrics) {
                 var lyric_strings = obj.song.lyrics.split('\n');
-                var times = new Array(), allLines = new Array(), allLyrics = new Array();
+                var times = new Array(),  allLyrics = new Array();
                 var cnt = 0;
                 for (line in lyric_strings) {
                     var y = lyric_strings[line];
@@ -142,9 +143,31 @@ function select_song(id,from_album) {
                         cnt++;
                     }
                 }
-                loop(times, allLyrics, id);
+                if(obj.song.translation){
+                    var trans_strings = obj.song.translation.split('\n');
+                    // console.log(trans_strings);
+                    var _trans_times = new Array(),allTrans = new Array();
+                    var cnt2= 0;
+                    for (line in trans_strings) {
+                        var y2 = trans_strings[line];
+                        if (y2[0] == '[') {
+                            var ind2 = y2.indexOf(']');
+                            var timeStr2 = y2.substr(1, ind2 - 1);
+                            // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
+                            _trans_times[cnt2] = parseFloat(timeStr2.substr(0, 2)) * 60 + parseFloat(timeStr2.substr(3));
+                            allTrans[cnt2] = y2.substr(ind + 1);
+                            cnt2++;
+                        }
+                    }
+                    // console.log(allTrans);
+                    // console.log(_trans_times);
+                    loop(id,times, allLyrics,_trans_times,allTrans);
+                }else {
+                    // console.log("no trans");
+                    loop(id,times, allLyrics,null,null);
+                }
             } else {
-                loop(null, null, id);
+                loop(id,null, null,null,null);
             }
 
         }
@@ -201,5 +224,20 @@ $("document").ready(function (e) {
         e.preventDefault();
         submitForm();
     });
-
+    $('body').mousemove(function (e) {
+        var docHeight=window.innerHeight;
+        docHeight/=3;
+        var now=e.pageY;
+        now-=docHeight*2;
+        var percent=now/docHeight;
+        var p2=percent;
+        if(now<0){
+            percent=p2=0;
+        }
+        if(percent>0.9)percent=1;
+        // console.log(percent+" "+now+" "+docHeight);
+        var footer=document.getElementById('footer');
+        footer.style.opacity=percent;
+        footer.style.background='linear-gradient(to top,white '+(p2*100)+'%,transparent)';
+    });
 });
