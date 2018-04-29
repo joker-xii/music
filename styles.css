@@ -54,7 +54,12 @@ html, body {
     -webkit-transition: 1.5s -webkit-filter ease-in; /* Safari and Chrome */
     -o-transition: 1.5s -o-filter ease-in; /* Opera */
 }
-
+.blur_front_trans {
+    transition: 0.2s filter ease-in;
+    -moz-transition: 0.2s -moz-filter ease-in; /* Firefox 4 */
+    -webkit-transition: 0.2s -webkit-filter ease-in; /* Safari and Chrome */
+    -o-transition: 0.2s -o-filter ease-in; /* Opera */
+}
 .none_back {
     background: rgba(255, 255, 255, 0);
 }
@@ -62,16 +67,16 @@ html, body {
 .jilao {
     text-align: center;
 }
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    filter:blur(100px);
-    /*background-color: black;*/
+#footer {
+    background: linear-gradient(to top,white 50%,transparent);
 }
 .navbar_effect{
     opacity: 0;
+}
+.black_layer{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+
 }
 .player_btn{
     position: absolute;
@@ -79,6 +84,10 @@ html, body {
     left: 2vw;
     background-color:rgba(144,238,144,1);
     transition: 0.5s background-color ease-in;
+}
+.player_btn_mobile{
+    transition: 0.5s background-color ease-in;
+    text-align: center;
 }
 .transparent_back_trans{
     transition: 1.5s opacity ease-in;
@@ -98,5 +107,13 @@ html, body {
     position: absolute;bottom: 0
 }
 .transparent_back{
+    opacity: 0;
+}
+
+#table_layer{
+    position: absolute;
+    width: 100vw;height: 100vh ;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.3);
     opacity: 0;
 }

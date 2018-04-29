@@ -5,14 +5,17 @@ function playOrPause() {
     if (x.paused || x.ended) {
         x.play();
         name.innerHTML = '&#9655;';
-        p.style.setProperty('background-color',"rgba(144,238,144,1)");
+        if(!is_mobile) {
+            p.style.setProperty('background-color', "rgba(144,238,144,1)");
+        }
         paused=false;
         // console.log("play");
     } else {
         x.pause();
-        name.innerHTML = '&#10072; &#10072;'
-        p.style.setProperty('background-color',"rgba(255,165,0,1)");
-        // console.log("pause");
+        name.innerHTML = '&#10072; &#10072;';
+        if(!is_mobile) {
+            p.style.setProperty('background-color', "rgba(255,165,0,1)");
+        }// console.log("pause");
         paused=true;
     }
 }
@@ -41,7 +44,7 @@ function mouse_progress(e) {
 }
 
 
-function loop(thisId, lyrics, allLyrics,transTime,allTrans) {
+function loop(thisId, lyrics, allLyrics,transTime,allTrans,last) {
     if (!(thisId === song_id_now)) {
         console.log('return'+thisId);
         return;
@@ -70,22 +73,33 @@ function loop(thisId, lyrics, allLyrics,transTime,allTrans) {
             // console.log(lineNow + " " + x.currentTime);
             lineNow = parseInt(lineNow);
             var lyric = document.getElementById('lyric');
-            if (lineNow >= 0) {
-                var tmp = "";
-                // console.log("NONE---------------");
-                var magic_begin = Math.max(0, lineNow - 3), magic_end = lineNow + 4;
-                if (magic_end >= allLyrics.length) magic_end = allLyrics.length;
-                // console.log("magic: " +magic_begin+ " "+magic_end)
-                for (var line_added = magic_begin; line_added < magic_end; line_added += 1) {
-                    tmp += allLyrics[line_added];
-                    // console.log(line_added + ' added');
-                }
+            if (lineNow !=last) {
+                last = lineNow;
+                if (is_mobile){
+                    // document.getElementById('lyric_mobile').innerHTML=allLyrics[lineNow];
+                    // console.log(allLyrics[lineNow]);
+                }else {
+                    // lyric.classList.add('blur_back');
+                    var tmp = "";
+                    // console.log("NONE---------------");
+                    var magic_begin = Math.max(0, lineNow - 3), magic_end = lineNow + 4;
+                    if (magic_end >= allLyrics.length) magic_end = allLyrics.length;
+                    // console.log("magic: " +magic_begin+ " "+magic_end)
+                    for (var line_added = magic_begin; line_added < magic_end; line_added += 1) {
+                        tmp += allLyrics[line_added];
+                        // console.log(line_added + ' added');
+                    }
 
-                lyric.innerHTML = tmp;
+                    lyric.innerHTML = tmp;
+                    var lyricNow = document.getElementById('__lyric_p_' + lineNow);
+                    lyricNow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+                    lyricNow.style.fontSize = 'x-large';
+                }
                 // console.log(lineNow+" "+ lyric_begin+' to '+lyric_end +" " +allLyrics.length);
-                var lyricNow = document.getElementById('__lyric_p_' + lineNow)
-                lyricNow.style.backgroundColor = 'rgba(255,255,255,0.5)';
-                lyricNow.style.fontSize = 'x-large';
+
+                // setTimeout(function () {
+                //     lyric.classList.remove('blur_back');
+                // }, interval);
             }
             if(transTime) {
                 var transLine = -1;
@@ -96,18 +110,23 @@ function loop(thisId, lyrics, allLyrics,transTime,allTrans) {
                     }
                 }
                 if (transLine >= 0) {
-                    document.getElementById('translate').innerHTML = allTrans[transLine];
+                    if(is_mobile){
+                        // document.getElementById('trans_mobile').innerHTML = allTrans[transLine];
+                    }else {
+                        document.getElementById('translate').innerHTML = allTrans[transLine];
+                    }
                     // console.log(allTrans[transLine]);
                 }
             }
         }else {
+            document.getElementById('translate').innerHTML = '';
             document.getElementById('lyric').innerHTML='';
         }
     }
     // console.log((x.currentTime/x.duration));
     requestAnimationFrame(function () {
         setTimeout(function () {
-            loop(thisId, lyrics, allLyrics,transTime,allTrans);
+            loop(thisId, lyrics, allLyrics,transTime,allTrans,last);
         }, interval);
     })
 }

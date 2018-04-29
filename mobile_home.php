@@ -9,11 +9,11 @@
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
-        var switch_bg = true;
+        var switch_bg = false;
         var paused = false;
-        var is_mobile=false;
+        var is_mobile = true;
     </script>
-    <script type="text/javascript" src="switchbg.js"></script>
+    <!--    <script type="text/javascript" src="switchbg.js"></script>-->
     <script src="submit.js" type="text/javascript"></script>
     <link href="styles.css" media="all" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -21,15 +21,13 @@
 </head>
 <body id="page_body">
 
-<div id="back_white" class="blur_back_trans back_style">
-</div>
-<div id="album_back" class="blur_album_back transparent_back_trans back_style transparent_back"></div>
-<div id="table_layer"></div>
+<div id="album_back" class="blur_album_back transparent_back_trans back_style transparent_back"
+     style="z-index: -1;"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
 
 </script>
-<nav class="navbar navbar-expand-sm navbar-light navbar_effect" id="navbar">
+<nav class="navbar navbar-collapse navbar-light " id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
             <code>MUSIC</code> !
         </h1></a>
@@ -67,37 +65,58 @@
 </nav>
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
     <div class="collapse" id="player">
-        <div class="row">
-            <div class="card col-sm-3" style="width: 25%;background-color: transparent;border: solid;border-width: 1px;
-                    border-left-color:transparent;border-top-color: transparent;border-bottom-color: transparent;border-right-color: rgba(0,0,0,0.1)">
-                <img class="card-img-top rounded" id="song_img" onclick="showAlbum()" alt="Card image cap">
-                <div class="card-body">
+        <div class="card text-white mx-auto" style="width: 90%;background-color: transparent;">
+            <img class="card-img rounded" alt="Card image"  onclick="showAlbum()" id="song_img">
+            <div class="card-img-overlay" style="height: 30vh" onclick="showAlbum()">
+                <div class="black_layer rounded">
+                    <h5 class="card-title "  id="song_name"></h5>
                     <hr class="my-1"/>
-                    <h5 class="card-title" id="song_name"></h5>
-                    <hr class="my-1"/>
-                    <p class="card-text">
-                        <a onclick="showAlbum()" id="album_name">
-                        </a>
+                    <p class="card-text " id="album_name">
                     </p>
-                    <hr class="my-1"/>
+                </div>
+            </div>
+            <div class="card-body">
 
-                    <button type="button" class=" btn btn-outline-primary my-2" style="width: 100%" data-toggle="modal"
+                <div class="progress border border-success "
+                     style="height: 5vh;background-color: transparent;" id="music_prog_border"
+                     onclick="mouse_progress(event)">
+                    <div class="progress-bar progress-bar-striped  bg-success progress-bar-animated jilao"
+                         id="music_progress"
+                         role="progressbar" style="width: 0%;"></div>
+                </div>
+                <hr class="my-1"/>
+                <div hidden class="progress border border-success "
+                     style="height: 5vh;background-color: transparent;" id="music_vol_border"
+                     onclick="mouse_volume(event)">
+                    <div class="progress-bar jilao  bg-success" id="volume"
+                         role="progressbar" style="width: 50%;">VOLUME
+                    </div>
+                </div>
+                <div class="btn-group btn-block">
+                    <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player" onclick="playOrPause()">
+                        <span id="playing">&#9655;</span>
+                        <audio controls id="hoshi_no_uta" loop="loop"
+                               style="opacity: 0;z-index: -1;width: 0px;height:0px;">
+                            <source id="song_source" type="audio/mpeg">
+                        </audio>
+                    </button>
+                    <button type="button" class=" btn btn-outline-primary " data-toggle="modal"
                             data-target="#show_result">
                         SHARE
                     </button>
+                </div>
 
-                </div>
-            </div>
-            <div class="col-sm-offset-1 col-sm-8 ">
-                <div style="height: 70vh;overflow: hidden;padding-top: 5vh;">
-                    <div id="lyric" class="blur_front_trans" style="height: inherit;overflow: visible;position: absolute;">
-                    </div>
-                </div>
-                <hr class="my-1"/>
-                <span id="translate" style="font-size: larger"></span>
             </div>
         </div>
-        <hr class="my-4"/>
+        <div  hidden class="col-sm-offset-1 col-sm-8 ">
+            <div hidden style="height: 70vh;overflow: hidden;padding-top: 5vh;">
+                <div id="lyric" class="blur_front_trans" style="height: inherit;overflow: visible;position: absolute;">
+                </div>
+            </div>
+            <hr class="my-1"/>
+            <span id="translate" style="font-size: larger"></span>
+        </div>
+        <hr hidden class="my-4"/>
     </div>
     <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
         <div class="collapse" id="song_list">
@@ -145,37 +164,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="navbar fixed-bottom" hidden id="footer" style="opacity: 0">
-    <div class="row" style="width: 100vw">
-        <div style="width: 20vw;">
-            <button class="btn btn-outline-light player_btn " id="simple_player" onclick="playOrPause()">
-                <span id="playing">&#9655;</span>
-                <audio controls id="hoshi_no_uta" loop="loop"
-                       style="opacity: 0;z-index: -1;width: 0px;height:0px;">
-                    <source id="song_source" type="audio/mpeg">
-                </audio>
-            </button>
-        </div>
-        <div style="width: 65vw;">
-            <div class="progress border border-info "
-                 style="height: 5vh;background-color: transparent;" id="music_prog_border"
-                 onclick="mouse_progress(event)">
-                <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated jilao"
-                     id="music_progress"
-                     role="progressbar" style="width: 0%;"></div>
-            </div>
-        </div>
-        <div style="width: 10vw;padding-left: 3vw">
-            <div class="progress border border-primary "
-                 style="height: 5vh;background-color: transparent;" id="music_vol_border"
-                 onclick="mouse_volume(event)">
-                <div class="progress-bar jilao  bg-primary" id="volume"
-                     role="progressbar" style="width: 50%;">VOLUME
-                </div>
             </div>
         </div>
     </div>

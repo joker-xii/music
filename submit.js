@@ -1,15 +1,19 @@
 function setSwitch(bol) {
     switch_bg=bol;
     if(bol){
-        document.getElementById('back_white').classList.remove('blur_back');
-        document.getElementById('back_white').classList.remove('transparent_back');
+        if(!is_mobile) {
+            document.getElementById('back_white').classList.remove('blur_back');
+            document.getElementById('back_white').classList.remove('transparent_back');
+            document.getElementById('table_layer').style.opacity=0;
+        }
         document.getElementById('album_back').classList.add("transparent_back");
-        document.getElementById('table_layer').style.opacity=0;
     }else {
-        document.getElementById('back_white').classList.add('blur_back');
-        document.getElementById('back_white').classList.add('transparent_back');
+        if(!is_mobile) {
+            document.getElementById('back_white').classList.add('blur_back');
+            document.getElementById('back_white').classList.add('transparent_back');
+            document.getElementById('table_layer').style.opacity=1;
+        }
         document.getElementById('album_back').classList.remove("transparent_back");
-        document.getElementById('table_layer').style.opacity=1;
     }
 }
 function showPlayer() {
@@ -51,7 +55,7 @@ function get_album(id) {
                 var mid = ",true)" + "\" class=\"list-group-item list-group-item-action none_back\">\n";
                 var end = "  </a>\n"
                 var uta_list_obj = JSON.parse(data);
-                 document.getElementById('list_album_pic').src=uta_list_obj.album.picUrl ;
+                 document.getElementById('list_album_pic').src=uta_list_obj.album.picUrl.replace('http://','https://') ;
                 document.getElementById('list_album_name').innerHTML=uta_list_obj.album.name;
                 document.getElementById('list_album_company').innerHTML= uta_list_obj.album.company;
                 var pub_date = new Date();
@@ -106,9 +110,11 @@ function select_song(id,from_album) {
                 var album = document.getElementById('album_name');
                 album.innerHTML =  obj.song.album.name ;
                 var img = document.getElementById('song_img');
-                img.src = obj.song.album.picUrl;
+                var picurl=obj.song.album.picUrl.replace('http://', 'https://');
+                img.src = picurl;
+
                 var aback =document.getElementById('album_back');
-                aback.style.background="url("+obj.song.album.picUrl+") no-repeat center center fixed";
+                aback.style.background="url("+img.src+") no-repeat center center fixed";
                 aback.style.backgroundSize='cover';
                 document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
                 var share=document.getElementById('result_text');
@@ -118,7 +124,7 @@ function select_song(id,from_album) {
             }
             // console.log(times);
             showPlayer();
-            document.getElementById('footer').removeAttribute('hidden');
+            if(!is_mobile)document.getElementById('footer').removeAttribute('hidden');
             var x = document.getElementById('hoshi_no_uta');
              // console.log( document.getElementById('volume').style.width.toString());
              x.volume =0.5;
@@ -163,13 +169,13 @@ function select_song(id,from_album) {
                     }
                     // console.log(allTrans);
                     // console.log(_trans_times);
-                    loop(id,times, allLyrics,_trans_times,allTrans);
+                    loop(id,times, allLyrics,_trans_times,allTrans,-1);
                 }else {
                     // console.log("no trans");
-                    loop(id,times, allLyrics,null,null);
+                    loop(id,times, allLyrics,null,null,-1);
                 }
             } else {
-                loop(id,null, null,null,null);
+                loop(id,null, null,null,null,-1);
             }
 
         }
@@ -193,7 +199,7 @@ function submitForm() {
             // console.log(uta_list_obj);
             for (xx in uta_list_obj.result.songs) {
                 var x = uta_list_obj.result.songs[xx];
-                change_string += pre + x.id + mid + "<img src='" + x.album.picUrl+"?param=130y130" + "' style='height: 5vh' class='rounded'/> " + x.name
+                change_string += pre + x.id + mid + "<img src='" + x.album.picUrl.replace('http://','https://') +"?param=130y130" + "' style='height: 5vh' class='rounded'/> " + x.name;
                 if(x.alias&&x.alias.length>0){
                     change_string+=' <i><sub>(';
                     for(var ind in x.alias){
@@ -269,29 +275,31 @@ $("document").ready(function (e) {
         submitForm();
     });
     var thisBody=$('body');
-    thisBody.mousemove(function (e) {
-        var docHeight=window.innerHeight;
-        var now=e.pageY;
-        navbarEffect(docHeight,now);
-        footerEffect(docHeight,now);
-    });
-    thisBody.keydown(function (e) {
-        var target = $(e.target);
-        if(!target.is('input')) {
-            var keynum;
-            var keychar;
-            if (window.event) {
-                keynum = e.keyCode;
-            }
-            else if (e.which) {
-                keynum = e.which;
-            }
+    if(!is_mobile) {
+        thisBody.mousemove(function (e) {
+            var docHeight = window.innerHeight;
+            var now = e.pageY;
+            navbarEffect(docHeight, now);
+            footerEffect(docHeight, now);
+        });
+        thisBody.keydown(function (e) {
+            var target = $(e.target);
+            if (!target.is('input')) {
+                var keynum;
+                var keychar;
+                if (window.event) {
+                    keynum = e.keyCode;
+                }
+                else if (e.which) {
+                    keynum = e.which;
+                }
 
-            keychar = String.fromCharCode(keynum);
-            console.log(keychar);
-            if (keychar === ' ') {
-                playOrPause();
+                keychar = String.fromCharCode(keynum);
+                console.log(keychar);
+                if (keychar === ' ') {
+                    playOrPause();
+                }
             }
-        }
-    });
+        });
+    }
 });
