@@ -20,12 +20,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 </head>
-<body id="page_body" class="back_style_phone">
+<body id="page_body" class="back_style_phone" >
 
 <div id="album_back" class="back_style_phone moblie_back_style transparent_back_trans"
      style="z-index: -1;"></div>
 
-<div id="table_layer"></div>
+<div id="table_layer" onclick="tryShowPlayer()"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
 

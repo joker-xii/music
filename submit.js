@@ -121,6 +121,11 @@ function get_album(id) {
     });
 }
 
+function tryShowPlayer() {
+    if(document.getElementById('player_link').hidden===false)
+        showPlayer();
+}
+
 function setBackPc(aback, picUrl) {
     aback.style.background = "url(" + picUrl + ")";
     aback.style.backgroundSize = 'cover';
