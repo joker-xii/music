@@ -139,8 +139,10 @@ function select_song(id,from_album) {
                 img.src = picurl;
 
                 var aback =document.getElementById('album_back');
-                aback.style.background="url("+img.src+") no-repeat center center fixed";
+                aback.style.background="url(https://music.163.com/api/img/blur/"+obj.song.album.picId+")";
                 aback.style.backgroundSize='cover';
+                aback.style.backgroundPosition='center';
+
                 document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
                 var share=document.getElementById('result_text');
                 var href=window.location.href;
