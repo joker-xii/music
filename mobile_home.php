@@ -6,10 +6,11 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <meta name="description" content ="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
-        var switch_bg = false;
+        var switch_bg = true;
         var paused = false;
         var is_mobile = true;
     </script>
@@ -21,7 +22,7 @@
 </head>
 <body id="page_body">
 
-<div id="album_back" class="blur_album_back transparent_back_trans back_style transparent_back"
+<div id="album_back" class="back_style transparent_back_trans"
      style="z-index: -1;"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
@@ -66,9 +67,9 @@
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
     <div class="collapse" id="player">
         <div class="card text-white mx-auto" style="width: 90%;background-color: transparent;">
-            <img class="card-img rounded" alt="Card image"  onclick="showAlbum()" id="song_img">
-            <div class="card-img-overlay" style="height: 30vh" onclick="showAlbum()">
-                <div class="black_layer rounded">
+            <img class="card-img rounded" alt="Card image"  onclick="showLyricsMobile()" id="song_img">
+            <div class="card-img-overlay" style="height: 30vh" onclick="showLyricsMobile()">
+                <div class="black_layer rounded" >
                     <h5 class="card-title "  id="song_name"></h5>
                     <hr class="my-1"/>
                     <p class="card-text " id="album_name">
@@ -85,13 +86,6 @@
                          role="progressbar" style="width: 0%;"></div>
                 </div>
                 <hr class="my-1"/>
-                <div hidden class="progress border border-success "
-                     style="height: 5vh;background-color: transparent;" id="music_vol_border"
-                     onclick="mouse_volume(event)">
-                    <div class="progress-bar jilao  bg-success" id="volume"
-                         role="progressbar" style="width: 50%;">VOLUME
-                    </div>
-                </div>
                 <div class="btn-group btn-block">
                     <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player" onclick="playOrPause()">
                         <span id="playing">&#9655;</span>
@@ -108,18 +102,13 @@
 
             </div>
         </div>
-        <div  hidden class="col-sm-offset-1 col-sm-8 ">
-            <div hidden style="height: 70vh;overflow: hidden;padding-top: 5vh;">
-                <div id="lyric" class="blur_front_trans" style="height: inherit;overflow: visible;position: absolute;">
-                </div>
-            </div>
-            <hr class="my-1"/>
-            <span id="translate" style="font-size: larger"></span>
-        </div>
-        <hr hidden class="my-4"/>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
+    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;">
         <div class="collapse" id="song_list">
+        </div>
+    </div>
+    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;text-align: center;" >
+        <div class="collapse" id="lyric_mobile" style="width: 91vw;" onclick="showPlayer()">
         </div>
     </div>
     <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">

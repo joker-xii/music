@@ -47,6 +47,9 @@ html, body {
     -moz-filter: blur(60px);
     -o-filter: blur(60px);
 }
+.moblie_back_style{
+    opacity: 0.6;
+}
 
 .blur_back_trans {
     transition: 1.5s filter ease-in;

@@ -1,30 +1,41 @@
 function setSwitch(bol) {
+    if(switch_bg===bol)return;
     switch_bg=bol;
-    if(bol){
-        if(!is_mobile) {
+    if(bol) {
+        if (!is_mobile) {
             document.getElementById('back_white').classList.remove('blur_back');
             document.getElementById('back_white').classList.remove('transparent_back');
-            document.getElementById('table_layer').style.opacity=0;
+            document.getElementById('table_layer').style.opacity = 0;
+            document.getElementById('album_back').classList.add("transparent_back");
+        } else {
+            document.getElementById('album_back').classList.remove("moblie_back_style");
         }
-        document.getElementById('album_back').classList.add("transparent_back");
     }else {
         if(!is_mobile) {
             document.getElementById('back_white').classList.add('blur_back');
             document.getElementById('back_white').classList.add('transparent_back');
             document.getElementById('table_layer').style.opacity=1;
+            document.getElementById('album_back').classList.remove("transparent_back");
+        }else {
+            document.getElementById('album_back').classList.add("moblie_back_style");
         }
-        document.getElementById('album_back').classList.remove("transparent_back");
     }
 }
 function showPlayer() {
     $('#song_list').collapse('hide');
     $('#album_list').collapse('hide');
+    if(is_mobile){
+        $('#lyric_mobile').collapse('hide');
+    }
     $('#player').collapse('show');
     setSwitch(false);
 }
 function showAlbum() {
     $('#player').collapse('hide');
     $('#song_list').collapse('hide');
+    if(is_mobile){
+        $('#lyric_mobile').collapse('hide');
+    }
     $('#album_list').collapse('show');
     setSwitch(false);
 }
@@ -32,6 +43,9 @@ function showAlbum() {
 function showSearchList() {
     $('#player').collapse('hide');
     $('#album_list').collapse('hide');
+    if(is_mobile){
+        $('#lyric_mobile').collapse('hide');
+    }
     $('#song_list').collapse('show');
     setSwitch(false);
 }
@@ -39,9 +53,19 @@ function hideall() {
     $('#player').collapse('hide');
     $('#song_list').collapse('hide');
     $('#album_list').collapse('hide');
+    if(is_mobile){
+        $('#lyric_mobile').collapse('hide');
+    }
     setSwitch(true);
 }
 
+function showLyricsMobile() {
+    $('#player').collapse('hide');
+    $('#song_list').collapse('hide');
+    $('#album_list').collapse('hide');
+    $('#lyric_mobile').collapse('show');
+    setSwitch(false);
+}
 
 function get_album(id) {
         $.ajax({
@@ -103,7 +127,8 @@ function select_song(id,from_album) {
             var name = document.getElementById('song_name');
             var url = document.getElementById('song_source');
             var lyric = document.getElementById('lyric');
-
+            document.title='「'+ obj.song.name+'」 - MUSIC';
+            var meta=document.getElementsByTagName("meta");
             url.src = obj.song.link;
             name.innerHTML = obj.song.name;
             if(! from_album){
@@ -121,14 +146,20 @@ function select_song(id,from_album) {
                 var href=window.location.href;
                 href=href.substr(0, href.lastIndexOf('/'))+"/?share="+obj.song.id;
                 share.innerHTML=href;
+                for (var i=0; i<meta.length; i++) {
+                    if (meta[i].name.toLowerCase()=="description") {
+                        meta[i].content=obj.song.album.name;
+                    }
+                }
             }
             // console.log(times);
             showPlayer();
             if(!is_mobile)document.getElementById('footer').removeAttribute('hidden');
             var x = document.getElementById('hoshi_no_uta');
-             // console.log( document.getElementById('volume').style.width.toString());
-             x.volume =0.5;
-            document.getElementById('volume').style.width=(x.volume*100)+"%";
+            if(!is_mobile) {
+                x.volume = 0.5;
+                document.getElementById('volume').style.width = (x.volume * 100) + "%";
+            }
             x.load();
             x.play();
             if(!from_album) {

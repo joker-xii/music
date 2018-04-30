@@ -6,6 +6,7 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <meta name="description" content ="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
