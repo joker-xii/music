@@ -139,7 +139,7 @@ function select_song(id,from_album) {
                 img.src = picurl;
 
                 var aback =document.getElementById('album_back');
-                aback.style.background="url(https://music.163.com/api/img/blur/"+obj.song.album.picId+")";
+                aback.style.background="url(https://music.163.com/api/img/blur/"+obj.song.album.picId_str+")";
                 aback.style.backgroundSize='cover';
                 aback.style.backgroundPosition='center';
 
