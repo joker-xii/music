@@ -110,7 +110,7 @@
             </div>
         </div>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;">
+    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: auto;">
         <div class="collapse" id="song_list">
         </div>
     </div>
@@ -118,7 +118,7 @@
         <div class="collapse" id="lyric_mobile" style="width: 91vw;" onclick="showPlayer()">
         </div>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
+    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: auto">
         <div class="collapse" id="album_list">
             <div style='width: 80vw' class="list-group ">
                 <a onclick='showPlayer()' class="list-group-item list-group-item-action none_back">
