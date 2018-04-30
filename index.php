@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 'On');
 include "netease.php";
 function isMobile() {
     // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
@@ -31,16 +32,40 @@ function isMobile() {
     }
     return false;
 }
+function get_redirect_url($url){
+    //echo get_redirect_url('http://www.oschina.net/action/project/go?id=1089&p=home');//输出结果为：http://code.google.com/android/function get_redirect_url($url){
+    $redirect_url = null;
 
-function isWeixin() {
-    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
-        return true;
+    $url_parts = @parse_url($url);
+    if (!$url_parts) return false;
+    if (!isset($url_parts['host'])) return false; //can't process relative URLs
+    if (!isset($url_parts['path'])) $url_parts['path'] = '/';
+
+    $sock = fsockopen($url_parts['host'], (isset($url_parts['port']) ? (int)$url_parts['port'] : 80), $errno, $errstr, 30);
+    if (!$sock) return false;
+
+    $request = "HEAD " . $url_parts['path'] . (isset($url_parts['query']) ? '?'.$url_parts['query'] : '') . " HTTP/1.1\r\n";
+    $request .= 'Host: ' . $url_parts['host'] . "\r\n";
+    $request .= "Connection: Close\r\n\r\n";
+    fwrite($sock, $request);
+    $response = '';
+    while(!feof($sock)) $response .= fread($sock, 8192);
+    fclose($sock);
+
+    if (preg_match('/^Location: (.+?)$/m', $response, $matches)){
+        if ( substr($matches[1], 0, 1) == "/" )
+            return $url_parts['scheme'] . "://" . $url_parts['host'] . trim($matches[1]);
+        else
+            return trim($matches[1]);
+
     } else {
         return false;
     }
 }
-
-if (isset($_REQUEST['search'])){
+if(isset($_REQUEST['blur_pic_redirect'])){
+    $url=htmlspecialchars($_REQUEST['blur_pic_redirect']);
+    if(strpos($url,'https://music.163.com/api/')==0) echo get_redirect_url($url);
+}elseif (isset($_REQUEST['search'])){
     echo Netease::get_songs($_REQUEST['search'],true);
 }elseif (isset($_REQUEST['id'])){
     echo Netease::get_song($_REQUEST['id'],true);

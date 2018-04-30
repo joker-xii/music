@@ -123,10 +123,24 @@ function setBackPc(aback,picUrl) {
     aback.style.backgroundPosition='center';
 }
 function setBack(aback,picId,picUrl) {
-    aback.style.background="url(https://music.163.com/api/img/blur/"+picId+")";
-    document.body.style.background='url('+picUrl+')';
-    document.body.style.backgroundSize= aback.style.backgroundSize='cover';
-    document.body.style.backgroundPosition= aback.style.backgroundPosition='center';
+    $.ajax({
+        type: "post",
+        url: '/music/',
+        data: '&blur_pic_redirect='+"https://music.163.com/api/img/blur/"+picId,
+        success:function (data) {
+            console.log(data);
+            picId=data.replace('http://','https://');
+            console.log(picId+' '+picUrl);
+            aback.style.background="url("+picId+")";
+            document.body.style.background='url('+picUrl+')';
+            document.body.style.backgroundSize= aback.style.backgroundSize='cover';
+            document.body.style.backgroundPosition= aback.style.backgroundPosition='center';
+        }
+    });
+}
+function getShareLink(id) {
+    var href=window.location.href;
+    return href.substr(0, href.lastIndexOf('/'))+"/?share="+id;
 }
 function select_song(id,from_album) {
 
@@ -159,18 +173,17 @@ function select_song(id,from_album) {
                         var strId = obj.song.album.picId_str;
                         if (strId != picId.toString()) picId = strId;
                     }
-                    setBack(aback, picId,picurl);
+                    setBack(aback,picId,picurl);
                 }
                 else {setBackPc(aback,picurl);}
-                document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
                 for (var i=0; i<meta.length; i++) {
                     if (meta[i].name.toLowerCase()=="description") {
                         meta[i].content=obj.song.album.name;
                     }
                 }
             }
-            var href=window.location.href;
-            href=href.substr(0, href.lastIndexOf('/'))+"/?share="+obj.song.id;
+            document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
+            var href=getShareLink(obj.song.id);
             var share=document.getElementById('result_text');
             if(is_mobile){
                 share.href=href;
@@ -327,7 +340,14 @@ function navbarEffect(docHeight,now) {
 $("document").ready(function (e) {
     $("#submit_form").submit(function (e) {
         e.preventDefault();
-        submitForm();
+        var searchStr=document.getElementById('uta_name').value;
+        if(searchStr.indexOf('music.163.com/')>=0){
+            var id=parseInt(searchStr.substr(searchStr.indexOf('id=')+3));
+            if(id) window.location.href=getShareLink(id);
+            else submitForm();
+        }else {
+            submitForm();
+        }
     });
     var thisBody=$('body');
     if(!is_mobile) {
