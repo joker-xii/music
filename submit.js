@@ -26,6 +26,7 @@ function showPlayer() {
     $('#album_list').collapse('hide');
     if(is_mobile){
         $('#lyric_mobile').collapse('hide');
+        $('#navbar_collapse').collapse('hide');
     }
     $('#player').collapse('show');
     setSwitch(false);
@@ -35,6 +36,7 @@ function showAlbum() {
     $('#song_list').collapse('hide');
     if(is_mobile){
         $('#lyric_mobile').collapse('hide');
+        $('#navbar_collapse').collapse('hide');
     }
     $('#album_list').collapse('show');
     setSwitch(false);
@@ -45,6 +47,7 @@ function showSearchList() {
     $('#album_list').collapse('hide');
     if(is_mobile){
         $('#lyric_mobile').collapse('hide');
+        $('#navbar_collapse').collapse('hide');
     }
     $('#song_list').collapse('show');
     setSwitch(false);
@@ -55,6 +58,7 @@ function hideall() {
     $('#album_list').collapse('hide');
     if(is_mobile){
         $('#lyric_mobile').collapse('hide');
+        $('#navbar_collapse').collapse('hide');
     }
     setSwitch(true);
 }

@@ -34,11 +34,11 @@
     <a class="navbar-brand" onclick="hideall()"><h1 >
             <u style="color: white"> <code >MUSIC</code></u>
         </h1></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse"
+            aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon " ></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbar_collapse">
 
         <form class="form-inline my-2 my-lg-0" id="submit_form">
             <div class="input-group">
