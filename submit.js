@@ -2,22 +2,22 @@ function setSwitch(bol) {
     if(switch_bg===bol)return;
     switch_bg=bol;
     if(bol) {
+        document.getElementById('table_layer').style.opacity = 0;
         if (!is_mobile) {
             document.getElementById('back_white').classList.remove('blur_back');
             document.getElementById('back_white').classList.remove('transparent_back');
-            document.getElementById('table_layer').style.opacity = 0;
             document.getElementById('album_back').classList.add("transparent_back");
         } else {
-            document.getElementById('album_back').classList.remove("moblie_back_style");
+            document.getElementById('album_back').classList.add("moblie_back_style");
         }
     }else {
+        document.getElementById('table_layer').style.opacity=1;
         if(!is_mobile) {
             document.getElementById('back_white').classList.add('blur_back');
             document.getElementById('back_white').classList.add('transparent_back');
-            document.getElementById('table_layer').style.opacity=1;
             document.getElementById('album_back').classList.remove("transparent_back");
         }else {
-            document.getElementById('album_back').classList.add("moblie_back_style");
+            document.getElementById('album_back').classList.remove("moblie_back_style");
         }
     }
 }
@@ -79,7 +79,7 @@ function get_album(id) {
                 var mid = ",true)" + "\" class=\"list-group-item list-group-item-action none_back\">\n";
                 var end = "  </a>\n"
                 var uta_list_obj = JSON.parse(data);
-                 document.getElementById('list_album_pic').src=uta_list_obj.album.picUrl.replace('http://','https://') ;
+                document.getElementById('list_album_pic').src=uta_list_obj.album.picUrl.replace('http://','https://') ;
                 document.getElementById('list_album_name').innerHTML=uta_list_obj.album.name;
                 document.getElementById('list_album_company').innerHTML= uta_list_obj.album.company;
                 var pub_date = new Date();
@@ -113,7 +113,17 @@ function get_album(id) {
             }
         });
 }
-
+function setBackPc(aback,picUrl) {
+    aback.style.background="url("+picUrl+")";
+    aback.style.backgroundSize='cover';
+    aback.style.backgroundPosition='center';
+}
+function setBack(aback,picId,picUrl) {
+    aback.style.background="url(https://music.163.com/api/img/blur/"+picId+")";
+    document.body.style.background='url('+picUrl+')';
+    document.body.style.backgroundSize= aback.style.backgroundSize='cover';
+    document.body.style.backgroundPosition= aback.style.backgroundPosition='center';
+}
 function select_song(id,from_album) {
 
     song_id_now = id;
@@ -126,35 +136,43 @@ function select_song(id,from_album) {
             // console.log(obj);
             var name = document.getElementById('song_name');
             var url = document.getElementById('song_source');
-            var lyric = document.getElementById('lyric');
+            // var lyric = document.getElementById('lyric');
             document.title='「'+ obj.song.name+'」 - MUSIC';
             var meta=document.getElementsByTagName("meta");
             url.src = obj.song.link;
             name.innerHTML = obj.song.name;
             if(! from_album){
                 var album = document.getElementById('album_name');
-                album.innerHTML =  obj.song.album.name ;
+                if(obj.song.album.name)album.innerHTML =  obj.song.album.name ;
                 var img = document.getElementById('song_img');
                 var picurl=obj.song.album.picUrl.replace('http://', 'https://');
                 img.src = picurl;
 
                 var aback =document.getElementById('album_back');
-                aback.style.background="url(https://music.163.com/api/img/blur/"+obj.song.album.picId_str+")";
-                aback.style.backgroundSize='cover';
-                aback.style.backgroundPosition='center';
-
+                if(is_mobile) {
+                    var picId = obj.song.album.picId;
+                    if (obj.song.album.picId_str) {
+                        var strId = obj.song.album.picId_str;
+                        if (strId != picId.toString()) picId = strId;
+                    }
+                    setBack(aback, picId,picurl);
+                }
+                else {setBackPc(aback,picurl);}
                 document.getElementById('result_title').innerHTML='SHARE 「'+ obj.song.name+'」';
-                var share=document.getElementById('result_text');
-                var href=window.location.href;
-                href=href.substr(0, href.lastIndexOf('/'))+"/?share="+obj.song.id;
-                share.innerHTML=href;
                 for (var i=0; i<meta.length; i++) {
                     if (meta[i].name.toLowerCase()=="description") {
                         meta[i].content=obj.song.album.name;
                     }
                 }
             }
-            // console.log(times);
+            var href=window.location.href;
+            href=href.substr(0, href.lastIndexOf('/'))+"/?share="+obj.song.id;
+            var share=document.getElementById('result_text');
+            if(is_mobile){
+                share.href=href;
+            }else {
+                share.innerHTML = href;
+            }// console.log(times);
             showPlayer();
             if(!is_mobile)document.getElementById('footer').removeAttribute('hidden');
             var x = document.getElementById('hoshi_no_uta');

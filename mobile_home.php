@@ -20,25 +20,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 </head>
-<body id="page_body">
+<body id="page_body" class="back_style_phone">
 
-<div id="album_back" class="back_style transparent_back_trans"
+<div id="album_back" class="back_style_phone moblie_back_style transparent_back_trans"
      style="z-index: -1;"></div>
+
+<div id="table_layer"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
 
 </script>
-<nav class="navbar navbar-collapse navbar-light " id="navbar">
-    <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
-            <code>MUSIC</code> !
+<nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
+    <a class="navbar-brand" onclick="hideall()"><h1 >
+            <u style="color: white"> <code >MUSIC</code></u>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon " ></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+
+        <form class="form-inline my-2 my-lg-0" id="submit_form">
+            <div class="input-group">
+                <input class="form-control mr-sm-2" type="search" name="search" id="uta_name" placeholder="Search songs/artists/albums"
+                       aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-outline-success " name="query" id="query" type="submit">Search
+                </button>
+                </div>
+            </div>
+        </form>
+
+        <ul class="navbar-nav mr-auto back_laye_3 rounded">
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="player_link" onclick="showPlayer()" hidden>PLAYER
                     <span class="sr-only">(current)</span></button>
@@ -55,13 +68,6 @@
             </li>
         </ul>
 
-
-        <form class="form-inline my-2 my-lg-0" id="submit_form">
-            <input class="form-control mr-sm-2" type="search" name="search" id="uta_name" placeholder="Search"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2" name="query" id="query" type="submit">Search
-            </button>
-        </form>
     </div>
 </nav>
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
@@ -69,7 +75,7 @@
         <div class="card text-white mx-auto" style="width: 90%;background-color: transparent;">
             <img class="card-img rounded" alt="Card image" onclick="showLyricsMobile()" id="song_img">
             <div class="card-img-overlay" style="height: 30vh" onclick="showLyricsMobile()">
-                <div class="black_layer rounded">
+                <div class="black_layer_5 rounded">
                     <h5 class="card-title " id="song_name"></h5>
                     <hr class="my-1"/>
                     <p class="card-text " id="album_name">
@@ -90,7 +96,7 @@
                     <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player"
                             onclick="playOrPause()">
                         <span id="playing">&#9655;</span>
-                        <audio controls id="hoshi_no_uta" loop="loop"
+                        <audio hidden controls id="hoshi_no_uta" loop="loop"
                                style="opacity: 0;z-index: -1;width: 0px;height:0px;">
                             <source id="song_source" type="audio/mpeg">
                         </audio>
@@ -148,8 +154,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <code>COPY THIS LINK TO SHARE</code>
-                <textarea id="result_text" style="width: 100%" readonly></textarea>
+                <code>SHARE THIS LINK</code>
+                <a id="result_text" style="width: 100%" class="btn btn-outline-danger btn-block">Click Here</a>
 
             </div>
             <div class="modal-footer">

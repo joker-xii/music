@@ -62,6 +62,12 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
     showDur += (duration % 60) < 10 ? ('0' + (duration % 60)) : (duration % 60);
     prog.innerHTML = "<span style='color:white;font-size: large;'>" + showCur + '/' + showDur + '<span>';
     if (!paused) {
+        var lyric;
+        if (is_mobile) {
+            lyric = document.getElementById('lyric_mobile');
+        } else {
+            lyric = document.getElementById('lyric');
+        }
         if (lyrics) {
             var lineNow = 0;
             for (line in lyrics) {
@@ -72,12 +78,6 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
             }
             // console.log(lineNow + " " + x.currentTime);
             lineNow = parseInt(lineNow);
-            var lyric;
-            if (is_mobile) {
-                lyric = document.getElementById('lyric_mobile');
-            } else {
-                lyric = document.getElementById('lyric');
-            }
             if (lineNow != last) {
                 last = lineNow;
                 // lyric.classList.add('blur_back');
@@ -121,8 +121,12 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
                 }
             }
         } else {
-            document.getElementById('translate').innerHTML = '';
-            document.getElementById('lyric').innerHTML = '';
+            if (is_mobile) {
+                lyric.innerHTML='No Lyrics';
+            } else {
+                document.getElementById('translate').innerHTML = '';
+                document.getElementById('lyric').innerHTML = '';
+            }
         }
     }
     // console.log((x.currentTime/x.duration));
