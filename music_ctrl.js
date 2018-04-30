@@ -95,7 +95,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
                 var lyricNow = document.getElementById('__lyric_p_' + lineNow);
                 lyricNow.style.backgroundColor = 'rgba(255,255,255,0.5)';
                 lyricNow.style.fontSize = 'x-large';
-                lyricNow.style.height='10vh';
+                lyricNow.style.height='11vh';
 
                 // console.log(lineNow+" "+ lyric_begin+' to '+lyric_end +" " +allLyrics.length);
 

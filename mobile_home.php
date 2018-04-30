@@ -6,7 +6,7 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
-    <meta name="description" content ="Music Box by Joker"/>
+    <meta name="description" content="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
@@ -67,10 +67,10 @@
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
     <div class="collapse" id="player">
         <div class="card text-white mx-auto" style="width: 90%;background-color: transparent;">
-            <img class="card-img rounded" alt="Card image"  onclick="showLyricsMobile()" id="song_img">
+            <img class="card-img rounded" alt="Card image" onclick="showLyricsMobile()" id="song_img">
             <div class="card-img-overlay" style="height: 30vh" onclick="showLyricsMobile()">
-                <div class="black_layer rounded" >
-                    <h5 class="card-title "  id="song_name"></h5>
+                <div class="black_layer rounded">
+                    <h5 class="card-title " id="song_name"></h5>
                     <hr class="my-1"/>
                     <p class="card-text " id="album_name">
                     </p>
@@ -87,7 +87,8 @@
                 </div>
                 <hr class="my-1"/>
                 <div class="btn-group btn-block">
-                    <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player" onclick="playOrPause()">
+                    <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player"
+                            onclick="playOrPause()">
                         <span id="playing">&#9655;</span>
                         <audio controls id="hoshi_no_uta" loop="loop"
                                style="opacity: 0;z-index: -1;width: 0px;height:0px;">
@@ -107,7 +108,7 @@
         <div class="collapse" id="song_list">
         </div>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;text-align: center;" >
+    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;text-align: center;">
         <div class="collapse" id="lyric_mobile" style="width: 91vw;" onclick="showPlayer()">
         </div>
     </div>

@@ -6,13 +6,13 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
-    <meta name="description" content ="Music Box by Joker"/>
+    <meta name="description" content="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
         var switch_bg = true;
         var paused = false;
-        var is_mobile=false;
+        var is_mobile = false;
     </script>
     <script type="text/javascript" src="switchbg.js"></script>
     <script src="submit.js" type="text/javascript"></script>
@@ -91,7 +91,8 @@
             </div>
             <div class="col-sm-offset-1 col-sm-8 ">
                 <div style="height: 70vh;overflow: hidden;padding-top: 5vh;">
-                    <div id="lyric" class="blur_front_trans" style="height: inherit;overflow: visible;position: absolute;">
+                    <div id="lyric" class="blur_front_trans"
+                         style="height: inherit;overflow: visible;position: absolute;">
                     </div>
                 </div>
                 <hr class="my-1"/>
