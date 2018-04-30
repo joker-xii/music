@@ -141,8 +141,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <code>COPY THIS LINK TO SHARE</code>
-                <textarea id="result_text" style="width: 100%" readonly></textarea>
+                <code id="copy_result">CLICK TEXT AREA TO COPY</code>
+                <textarea id="result_text" style="width: 100%" readonly onclick="copyShareLink(this)"></textarea>
 
             </div>
             <div class="modal-footer">

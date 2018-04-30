@@ -32,7 +32,7 @@
 </script>
 <nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 >
-            <u style="color: white"> <code >MUSIC</code></u>
+             <code >MUSIC</code><span style="color: white">!</span>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse"
             aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +155,7 @@
             </div>
             <div class="modal-body">
                 <code>SHARE THIS LINK</code>
-                <a id="result_text" style="width: 100%" class="btn btn-outline-danger btn-block">Click Here</a>
+                <a id="result_text" style="width: 100%" class="btn btn-outline-danger btn-block" >SHARE LINK</a>
 
             </div>
             <div class="modal-footer">
