@@ -136,11 +136,11 @@ function setBack(aback, picId, picUrl) {
     $.ajax({
         type: "post",
         url: '/music/',
-        data: '&blur_pic_redirect=' + "https://music.163.com/api/img/blur/" + picId,
+        data: '&blur_pic_redirect=' + picId,
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             picId = data.replace('http://', 'https://');
-            console.log(picId + ' ' + picUrl);
+            // console.log(picId + ' ' + picUrl);
             aback.style.background = "url(" + picId + ")";
             document.body.style.background = 'url(' + picUrl + ')';
             document.body.style.backgroundSize = aback.style.backgroundSize = 'cover';
@@ -151,7 +151,7 @@ function setBack(aback, picId, picUrl) {
 
 function getShareLink(id) {
     var href = window.location.href;
-    return href.substr(0, href.lastIndexOf('/')) + "/?share=" + id;
+    return href.substr(0, href.lastIndexOf('/')) + "/?song=" + id;
 }
 
 function select_song(id, from_album) {
@@ -231,7 +231,7 @@ function select_song(id, from_album) {
 
                         // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
                         times[cnt] = parseFloat(timeStr.substr(0, 2)) * 60 + parseFloat(timeStr.substr(3));
-                        if(times[cnt]&&(y.length-ind-1>0)) {
+                        if(times[cnt]!==undefined &&(y.length-ind-1>0)) {
                             allLyrics[cnt] = "<div id='__lyric_p_" + cnt + "' class='flex-container lyric_container'>" + y.substr(ind + 1) + "</div>";
                             cnt++;
                         }
@@ -249,7 +249,7 @@ function select_song(id, from_album) {
                             var timeStr2 = y2.substr(1, ind2 - 1);
                             // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
                             _trans_times[cnt2] = parseFloat(timeStr2.substr(0, 2)) * 60 + parseFloat(timeStr2.substr(3));
-                            if (_trans_times[cnt2]&&(y2.length-ind2-1>0)) {
+                            if (_trans_times[cnt2]!==undefined &&(y2.length-ind2-1>0)) {
                                 allTrans[cnt2] = y2.substr(ind + 1);
                                 cnt2++;
                             }

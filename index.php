@@ -62,9 +62,18 @@ function get_redirect_url($url){
         return false;
     }
 }
+function checkSongId(){
+    if (isset($_REQUEST['share'])) {
+        echo '<script>select_song(' . htmlspecialchars($_REQUEST['share']) . ',false);</script>';
+        return;
+    }
+    if(isset($_REQUEST['song'])){
+        echo '<script>select_song(' . htmlspecialchars($_REQUEST['song']) . ',false);</script>';
+    }
+}
 if(isset($_REQUEST['blur_pic_redirect'])){
     $url=htmlspecialchars($_REQUEST['blur_pic_redirect']);
-    if(strpos($url,'https://music.163.com/api/')==0) echo get_redirect_url($url);
+     echo get_redirect_url( "https://music.163.com/api/img/blur/".$url);
 }elseif (isset($_REQUEST['search'])){
     echo Netease::get_songs($_REQUEST['search'],true);
 }elseif (isset($_REQUEST['id'])){
@@ -73,11 +82,8 @@ if(isset($_REQUEST['blur_pic_redirect'])){
     echo Netease::get_album($_REQUEST['album_id'],true);
 }elseif (isMobile()){
     include "mobile_home.php";
-    if (isset($_REQUEST['share']))
-        echo '<script>select_song('.htmlspecialchars($_REQUEST['share']).',false);</script>';
-}
-else{
+    checkSongId();
+}else{
     include "real_home.php";
-    if (isset($_REQUEST['share']))
-        echo '<script>select_song('.htmlspecialchars($_REQUEST['share']).',false);</script>';
+    checkSongId();
 }

@@ -15,7 +15,7 @@
         var is_mobile = true;
     </script>
     <!--    <script type="text/javascript" src="switchbg.js"></script>-->
-    <script src="submit.js" type="text/javascript"></script>
+    <script src="utilities.js" type="text/javascript"></script>
     <link href="styles.css" media="all" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
