@@ -108,7 +108,7 @@
         </div>
     </div>
     <div style="position: absolute;overflow: visible">
-        <div class="collapse" id="song_list">
+        <div class="collapse" id="song_list" style="width: 90vw;">
         </div>
     </div>
     <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: hidden;text-align: center;">

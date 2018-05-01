@@ -226,11 +226,15 @@ function select_song(id, from_album) {
                     var y = lyric_strings[line];
                     if (y[0] == '[') {
                         var ind = y.indexOf(']');
+
                         var timeStr = y.substr(1, ind - 1);
+
                         // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
                         times[cnt] = parseFloat(timeStr.substr(0, 2)) * 60 + parseFloat(timeStr.substr(3));
-                        allLyrics[cnt] = "<div id='__lyric_p_" + cnt + "' class='flex-container'>" + y.substr(ind + 1) + "</div>";
-                        cnt++;
+                        if(times[cnt]) {
+                            allLyrics[cnt] = "<div id='__lyric_p_" + cnt + "' class='flex-container'>" + y.substr(ind + 1) + "</div>";
+                            cnt++;
+                        }
                     }
                 }
                 if (obj.song.translation) {
@@ -245,19 +249,21 @@ function select_song(id, from_album) {
                             var timeStr2 = y2.substr(1, ind2 - 1);
                             // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
                             _trans_times[cnt2] = parseFloat(timeStr2.substr(0, 2)) * 60 + parseFloat(timeStr2.substr(3));
-                            allTrans[cnt2] = y2.substr(ind + 1);
-                            cnt2++;
+                            if (_trans_times[cnt2]) {
+                                allTrans[cnt2] = y2.substr(ind + 1);
+                                cnt2++;
+                            }
                         }
                     }
                     // console.log(allTrans);
                     // console.log(_trans_times);
-                    loop(id, times, allLyrics, _trans_times, allTrans, -1);
+                    loop(id, times, allLyrics, _trans_times, allTrans, -1,-1);
                 } else {
                     // console.log("no trans");
-                    loop(id, times, allLyrics, null, null, -1);
+                    loop(id, times, allLyrics, null, null, -1,-1);
                 }
             } else {
-                loop(id, null, null, null, null, -1);
+                loop(id, null, null, null, null, -1,-1);
             }
 
         }

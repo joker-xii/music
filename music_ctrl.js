@@ -44,7 +44,7 @@ function mouse_progress(e) {
 }
 
 
-function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
+function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
     if (!(thisId === song_id_now)) {
         console.log('return' + thisId);
         return;
@@ -84,7 +84,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
                 var tmp = new Array();
                 // console.log("NONE---------------");
                 var showCnt=3;
-                if(is_mobile) showCnt=2;
+                // if(is_mobile) showCnt=2;
                 var magic_begin = Math.max(0, lineNow - showCnt), magic_end = lineNow + showCnt+1;
                 if (magic_end >= allLyrics.length) magic_end = allLyrics.length;
                 var count=0;
@@ -95,7 +95,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
                 }
 
                 if (transTime) {
-                    var transLine = -1;
+                    var transLine = 0;
                     for (line in transTime) {
                         if (transTime[line] != null) {
                             if (transTime[line] > x.currentTime) break;
@@ -103,7 +103,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
                         }
                     }
                     transLine=parseInt(transLine);
-                    if (transLine >= 0) {
+                    if (transLine !=lastTrans) {
                         var trans_begin = Math.max(0, transLine - showCnt),trans_end = transLine + showCnt+1;
                         if (trans_end >= allTrans.length) trans_end = allTrans.length;
                         count=0;
@@ -133,7 +133,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
     // console.log((x.currentTime/x.duration));
     requestAnimationFrame(function () {
         setTimeout(function () {
-            loop(thisId, lyrics, allLyrics, transTime, allTrans, last);
+            loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans);
         }, interval);
     })
 }
