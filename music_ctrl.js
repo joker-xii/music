@@ -150,3 +150,16 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
         }, interval);
     })
 }
+function validClr() {
+    return Math.floor(Math.random()*256);
+}
+function titleChangeColor(elem) {
+    interval=300;
+    elem.style.color = "rgba(" + [validClr(),validClr(),validClr(), 1].join(",") + ")";
+    // console.log( "rgba(" + [validClr(), validClr(), validClr(), 1].join(",") + ")");
+    requestAnimationFrame(function () {
+        setTimeout(function () {
+            titleChangeColor(elem);
+        }, interval);
+    })
+}

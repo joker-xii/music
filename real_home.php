@@ -33,7 +33,7 @@
 </script>
 <nav class="navbar navbar-expand-sm navbar-light navbar_effect" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
-            <code>MUSIC</code> !
+            <code >MUSIC</code><span id="various_color_title">!</span>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

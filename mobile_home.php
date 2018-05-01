@@ -29,7 +29,7 @@
 <script type="text/javascript" src="music_ctrl.js"></script>
 <nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 >
-             <code >MUSIC</code><span style="color: white">!</span>
+             <code >MUSIC</code><span id="various_color_title">!</span>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse"
             aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,11 +81,11 @@
             </div>
             <div class="card-body">
 
-                <div class="progress border border-success jilao position-relative"
+                <div class="progress border border-info jilao position-relative"
                      style="height: 5vh;background-color: transparent;" id="music_prog_border"
                      onclick="mouse_progress(event)">
                     <span style='color:white; ' class="justify-content-center d-flex position-absolute w-100" id='prog_span'></span>
-                    <div class="progress-bar progress-bar-striped  bg-success progress-bar-animated "
+                    <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated "
                          id="music_progress"
                          role="progressbar" style="width: 0%;"></div>
                 </div>

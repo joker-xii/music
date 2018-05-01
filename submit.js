@@ -370,55 +370,21 @@ function copyShareLink(obj) {
     document.getElementById('copy_result').innerHTML='COPY COMPLETED';
 }
 
-function getClipboard() {
-    if (window.clipboardData) {
-        return (window.clipboardData.getData('Text'));
+function checkNeteaseShareLink(searchStr) {
+    if (searchStr.indexOf('music.163.com/') >= 0) {
+        var id = parseInt(searchStr.substr(searchStr.indexOf('song/') + 5));
+        if (isNaN(id)) id = parseInt(searchStr.substr(searchStr.indexOf('id=') + 3));
+        if (id === parseInt(searchStr.substr(searchStr.indexOf('userid=') + 7))) return false;
+        else {
+            if (id) return getShareLink(id);
+            else return false;
+        }
+    } else {
+        return false;
     }
-    else if (window.netscape) {
-        netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-        var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);
-        if (!clip) return;
-        var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);
-        if (!trans) return;
-        trans.addDataFlavor('text/unicode');
-        clip.getData(trans, clip.kGlobalClipboard);
-        var str = new Object();
-        var len = new Object();
-        try {
-            trans.getTransferData('text/unicode', str, len);
-        }
-        catch (error) {
-            return null;
-        }
-        if (str) {
-            if (Components.interfaces.nsISupportsWString) str = str.value.QueryInterface(Components.interfaces.nsISupportsWString);
-            else if (Components.interfaces.nsISupportsString) str = str.value.QueryInterface(Components.interfaces.nsISupportsString);
-            else str = null;
-        }
-        if (str) {
-            return (str.data.substring(0, len.value / 2));
-        }
-    }
-    return null;
 }
-
 $("document").ready(function (e) {
-    function checkNeteaseShareLink(searchStr) {
-        if (searchStr.indexOf('music.163.com/') >= 0) {
-            var id = parseInt(searchStr.substr(searchStr.indexOf('song/') + 5));
-            if (id < 0) id = parseInt(searchStr.substr(searchStr.indexOf('id=') + 3));
-            if (id === parseInt(searchStr.substr(searchStr.indexOf('userid=') + 7))) return false;
-            else {
-                if (id) return getShareLink(id);
-                else return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    var clip = getClipboard();
-    if(clip) checkNeteaseShareLink(clip);
+    titleChangeColor(document.getElementById('various_color_title'));
     $("#submit_form").submit(function (e) {
         e.preventDefault();
         var searchStr = document.getElementById('uta_name').value;
