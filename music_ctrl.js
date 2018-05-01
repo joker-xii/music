@@ -5,8 +5,8 @@ function setPlay(setplay) {
     if (setplay) {
         x.play();
 
-        name.classList.add('pause_btn');
-        name.classList.remove('playing_btn');
+        name.classList.add('fa-pause');
+        name.classList.remove('fa-play');
         p.classList.remove('btn-outline-warning');
         p.classList.add('btn-outline-success');
 
@@ -15,8 +15,8 @@ function setPlay(setplay) {
     } else {
         x.pause();
 
-        name.classList.remove('pause_btn');
-        name.classList.add('playing_btn');
+        name.classList.remove('fa-pause');
+        name.classList.add('fa-play');
         p.classList.remove('btn-outline-success');
         p.classList.add('btn-outline-warning');
         paused = true;
@@ -155,7 +155,7 @@ function validClr() {
 }
 function titleChangeColor(elem) {
     interval=1000;
-    elem.style.color = "rgb(" + [validClr(),validClr(),validClr()].join(",") + ")";
+    if(!paused) elem.style.color = "rgb(" + [validClr(),validClr(),validClr()].join(",") + ")";
     // console.log( "rgba(" + [validClr(), validClr(), validClr(), 1].join(",") + ")");
     setTimeout(function () {
         titleChangeColor(elem);

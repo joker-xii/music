@@ -8,6 +8,8 @@
     <link href="scrollbar.css" media="all" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link href="../Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
+    <link href="../Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
@@ -33,7 +35,7 @@
 </script>
 <nav class="navbar navbar-expand-sm navbar-light navbar_effect" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
-            <code >MUSIC</code><span id="various_color_title">!</span>
+            <i id="various_color_title" class="fas fa-music"></i> <code >MUSIC</code>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +46,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="player_link" onclick="showPlayer()" hidden>PLAYER
-                    <span class="sr-only">(current)</span></button>
+<!--                    <span class="sr-only">(current)</span></button>-->
             </li>
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="album_link" onclick="showAlbum()" hidden>
@@ -82,12 +84,15 @@
                         </a>
                     </p>
                     <hr class="my-1"/>
-
-                    <button type="button" class=" btn btn-outline-primary my-2" style="width: 100%" data-toggle="modal"
-                            data-target="#show_result">
-                        SHARE
-                    </button>
-
+                    <div class="btn-group btn-block">
+                        <button type="button" class=" btn btn-outline-primary my-2"  data-toggle="modal"
+                                data-target="#show_result">
+                            <i class="fas fa-share-alt"></i>SHARE
+                        </button>
+                        <a id="download_link" class="btn btn-outline-success my-2">
+                                <i class="fas fa-download"></i>DOWNLOAD
+                        </a>
+                    </div>
                 </div>
             </div>
             </div>
@@ -116,8 +121,8 @@
                         </div>
                         <div class='col-sm-offset-1 col-sm-6'>
                             <h1 id="list_album_name"></h1>
-                            <p id="list_album_company"></p>
-                            <p id="list_album_date"></p>
+                            <p><i class="fas fa-building"></i> <span id="list_album_company"></span></p>
+                            <p><i class="fas fa-calendar"></i> <span id="list_album_date"></span></p>
                         </div>
                     </div>
                 </a>
@@ -156,7 +161,7 @@
     <div class="row" style="width: 100vw">
         <div style="width: 20vw;">
             <button class="btn btn-outline-success player_btn " id="simple_player" onclick="playOrPause()">
-                <div id="playing" class=" mx-auto pause_btn playing_status align-middle" ></div>
+                <i id="playing" class=" mx-auto fas fa-pause align-middle" ></i>
                 <audio controls id="hoshi_no_uta" loop="loop"
                        style="opacity: 0;z-index: -1;width: 0px;height:0px;">
                     <source id="song_source" type="audio/mpeg">
@@ -178,7 +183,7 @@
                  style="height: 5vh;background-color: transparent;" id="music_vol_border"
                  onclick="mouse_volume(event)">
                 <div class="progress-bar jilao  bg-primary" id="volume"
-                     role="progressbar" style="width: 50%;">VOLUME
+                     role="progressbar" style="width: 50%;"><i class="mx-auto fas fa-volume-up"></i>
                 </div>
             </div>
         </div>

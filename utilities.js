@@ -166,11 +166,14 @@ function select_song(id, from_album) {
             // console.log(obj);
             var name = document.getElementById('song_name');
             var url = document.getElementById('song_source');
+            var download_link=document.getElementById('download_link');
+
             // var lyric = document.getElementById('lyric');
             document.title = '「' + obj.song.name + '」 - MUSIC';
             var meta = document.getElementsByTagName("meta");
-            url.src = obj.song.link;
-            name.innerHTML = obj.song.name;
+            download_link.href=url.src = obj.song.link;
+            // download_link.download=
+            download_link.download=name.innerHTML = obj.song.name;
             if (!from_album) {
                 var album = document.getElementById('album_name');
                 if (obj.song.album.name) album.innerHTML = obj.song.album.name;

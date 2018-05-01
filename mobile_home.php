@@ -6,12 +6,14 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link href="../Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
+    <link href="../Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
     <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
         var switch_bg = true;
-        var paused = false;
+        var paused = true;
         var is_mobile = true;
     </script>
     <!--    <script type="text/javascript" src="switchbg.js"></script>-->
@@ -29,7 +31,7 @@
 <script type="text/javascript" src="music_ctrl.js"></script>
 <nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 >
-             <code >MUSIC</code><span id="various_color_title">!</span>
+            <i id="various_color_title" class="fas fa-music" style="color:white"></i> <code >MUSIC</code>
         </h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_collapse"
             aria-controls="navbar_collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +44,8 @@
                 <input class="form-control mr-sm-2" type="search" name="search" id="uta_name" placeholder="Search songs/artists/albums"
                        aria-label="Search">
                 <div class="input-group-append">
-                <button class="btn btn-outline-success " name="query" id="query" type="submit">Search
+                <button class="btn btn-outline-success " name="query" id="query" type="submit">
+                    <i class="fas fa-search"></i> Search
                 </button>
                 </div>
             </div>
@@ -50,17 +53,18 @@
 
         <ul class="navbar-nav mr-auto back_laye_3 rounded">
             <li class="nav-item active">
-                <button class="nav-link btn btn-link" id="player_link" onclick="showPlayer()" hidden>PLAYER
-                    <span class="sr-only">(current)</span></button>
+                <button class="nav-link btn btn-link" id="player_link" onclick="showPlayer()" hidden>
+                     <i class="fas fa-expand navbar_icon_pos" ></i> PLAYER
+<!--                    <span class="sr-only">(current)</span></button>-->
             </li>
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="album_link" onclick="showAlbum()" hidden>
-                    ALBUM
+                    <i class="fas fa-list navbar_icon_pos" ></i>  ALBUM
                 </button>
             </li>
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="result_link" onclick="showSearchList()" hidden>
-                    LIST
+                    <i class="fas fa-search navbar_icon_pos" ></i> LIST
                 </button>
             </li>
         </ul>
@@ -73,9 +77,9 @@
             <img class="card-img rounded" alt="Card image" onclick="showLyricsMobile()" id="song_img">
             <div class="card-img-overlay" style="height: 30vh" onclick="showLyricsMobile()">
                 <div class="black_layer_5 rounded">
-                    <h5 class="card-title " id="song_name"></h5>
-                    <hr class="my-1"/>
-                    <p class="card-text " id="album_name">
+                    <h4 class="card-title " id="song_name"></h4>
+<!--                    <hr class="my-auto bg-transparent"/>-->
+                    <p class="card-subtitle " id="album_name">
                     </p>
                 </div>
             </div>
@@ -83,8 +87,8 @@
 
                 <div class="progress border border-info jilao position-relative"
                      style="height: 5vh;background-color: transparent;" id="music_prog_border"
-                     onclick="mouse_progress(event)">
-                    <span style='color:white; ' class="justify-content-center d-flex position-absolute w-100" id='prog_span'></span>
+                     onmousemove="mouse_progress(event)">
+                    <span style='color:white;font-size: larger; ' class=" justify-content-center d-flex position-absolute w-100 " id='prog_span'></span>
                     <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated "
                          id="music_progress"
                          role="progressbar" style="width: 0%;"></div>
@@ -97,12 +101,15 @@
                                style="opacity: 0;z-index: -1;width: 0px;height:0px;">
                             <source id="song_source" type="audio/mpeg">
                         </audio>
-                        <div id="playing" class=" mx-auto pause_btn playing_status"></div>
+                        <div id="playing" class=" mx-auto fas fa-pause playing_status"></div>
                     </button>
                     <button type="button" class=" btn btn-outline-primary " data-toggle="modal"
                             data-target="#show_result">
-                        SHARE
+                        <i class="fas fa-share-alt"></i>
                     </button>
+                    <a id="download_link" class="btn btn-outline-dark">
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
 
             </div>
@@ -126,8 +133,8 @@
                         </div>
                         <div class='col-sm-offset-1 col-sm-6'>
                             <h1 id="list_album_name"></h1>
-                            <p id="list_album_company"></p>
-                            <p id="list_album_date"></p>
+                            <p><i class="fas fa-building"></i> <span id="list_album_company"></span></p>
+                            <p><i class="fas fa-calendar"></i> <span id="list_album_date"></span></p>
                         </div>
                     </div>
                 </a>

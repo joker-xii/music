@@ -56,6 +56,10 @@ html, body {
 .navbar_effect{
     opacity: 0;
 }
+.navbar_icon_pos{
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
 /*.navbar-toggler-icon.icon-bar{ background-color: white !important; }*/
 .navbar_effect_mobile{
     /*background:linear-gradient(to bottom,white 30%,transparent);*/
