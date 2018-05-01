@@ -4,6 +4,8 @@
     <meta charset="utf-8"/>
     <title>MUSIC</title>
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
+    <link href="styles.css" media="all" rel="stylesheet"/>
+    <link href="scrollbar.css" media="all" rel="stylesheet"/>
     <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
     <meta name="description" content="Music Box by Joker"/>
@@ -16,7 +18,6 @@
     </script>
     <script type="text/javascript" src="switchbg.js"></script>
     <script src="submit.js" type="text/javascript"></script>
-    <link href="styles.css" media="all" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 </head>
@@ -69,8 +70,8 @@
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
     <div class="collapse" id="player">
         <div class="row">
-            <div class="card col-sm-3" style="width: 25%;background-color: transparent;border: solid;border-width: 1px;
-                    border-left-color:transparent;border-top-color: transparent;border-bottom-color: transparent;border-right-color: rgba(0,0,0,0.1)">
+            <div class='col-sm-3 border-right-1 border-dark'>
+            <div class="card " style="width: 100%;background-color: transparent; border: hidden">
                 <img class="card-img-top rounded" id="song_img" onclick="showAlbum()" alt="Card image cap">
                 <div class="card-body">
                     <hr class="my-1"/>
@@ -89,6 +90,7 @@
 
                 </div>
             </div>
+            </div>
             <div class="col-sm-offset-1 col-sm-8 ">
                 <div style="height: 70vh;overflow: hidden;padding-top: 5vh;">
                     <div id="lyric" class="blur_front_trans"
@@ -96,16 +98,15 @@
                     </div>
                 </div>
                 <hr class="my-1"/>
-                <span id="translate" style="font-size: larger"></span>
             </div>
         </div>
         <hr class="my-4"/>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
+    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: visible">
         <div class="collapse" id="song_list">
         </div>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto">
+    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: visible">
         <div class="collapse" id="album_list">
             <div style='width: 80vw' class="list-group ">
                 <a onclick='showPlayer()' class="list-group-item list-group-item-action none_back">

@@ -22,14 +22,11 @@
 </head>
 <body id="page_body" class="back_style_phone" >
 
-<div id="album_back" class="back_style_phone moblie_back_style transparent_back_trans"
-     style="z-index: -1;"></div>
+<div id="album_back" class="back_style_phone moblie_back_style transparent_back_trans" style="z-index: -1;"></div>
 
-<div id="table_layer" onclick="tryShowPlayer()"></div>
+<div id="table_layer" onclick="tryShowPlayer()" style="z-index: -1;"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
-<script type="text/javascript" src="music_ctrl.js">
-
-</script>
+<script type="text/javascript" src="music_ctrl.js"></script>
 <nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 >
              <code >MUSIC</code><span style="color: white">!</span>
@@ -72,7 +69,7 @@
 </nav>
 <div style="padding-top: 3vh;padding-left: 3vh;padding-right: 3vh">
     <div class="collapse" id="player">
-        <div class="card text-white mx-auto" style="width: 90%;background-color: transparent;">
+        <div class="card text-white mx-auto shadow_card" style="width: 90%;background-color: transparent;">
             <img class="card-img rounded" alt="Card image" onclick="showLyricsMobile()" id="song_img">
             <div class="card-img-overlay" style="height: 30vh" onclick="showLyricsMobile()">
                 <div class="black_layer_5 rounded">
@@ -110,17 +107,17 @@
             </div>
         </div>
     </div>
-    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: auto;">
+    <div style="position: absolute;overflow: visible">
         <div class="collapse" id="song_list">
         </div>
     </div>
-    <div style="height: 80vh;padding-top: 0vh;position:absolute;overflow: auto;text-align: center;">
+    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: hidden;text-align: center;">
         <div class="collapse" id="lyric_mobile" style="width: 91vw;" onclick="showPlayer()">
         </div>
     </div>
-    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: auto">
+    <div style="position: absolute;overflow: visible; ">
         <div class="collapse" id="album_list">
-            <div style='width: 80vw' class="list-group ">
+            <div style='width: 90vw' class="list-group ">
                 <a onclick='showPlayer()' class="list-group-item list-group-item-action none_back">
                     <div class='row'>
                         <div class=' col-sm-offset-1 col-sm-3'>
@@ -134,7 +131,7 @@
                     </div>
                 </a>
             </div>
-            <div style='width: 80vw' class="list-group " id="album_list_items">
+            <div style='width: 90vw' class="list-group " id="album_list_items">
 
             </div>
         </div>

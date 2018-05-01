@@ -81,52 +81,53 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last) {
             if (lineNow != last) {
                 last = lineNow;
                 // lyric.classList.add('blur_back');
-                var tmp = "";
+                var tmp = new Array();
                 // console.log("NONE---------------");
-                var magic_begin = Math.max(0, lineNow - 3), magic_end = lineNow + 4;
+                var showCnt=3;
+                if(is_mobile) showCnt=2;
+                var magic_begin = Math.max(0, lineNow - showCnt), magic_end = lineNow + showCnt+1;
                 if (magic_end >= allLyrics.length) magic_end = allLyrics.length;
+                var count=0;
                 // console.log("magic: " +magic_begin+ " "+magic_end)
                 for (var line_added = magic_begin; line_added < magic_end; line_added += 1) {
-                    tmp += allLyrics[line_added];
+                    tmp[count++] =allLyrics[line_added];
                     // console.log(line_added + ' added');
                 }
 
-                lyric.innerHTML = tmp;
+                if (transTime) {
+                    var transLine = -1;
+                    for (line in transTime) {
+                        if (transTime[line] != null) {
+                            if (transTime[line] > x.currentTime) break;
+                            transLine = line;
+                        }
+                    }
+                    transLine=parseInt(transLine);
+                    if (transLine >= 0) {
+                        var trans_begin = Math.max(0, transLine - showCnt),trans_end = transLine + showCnt+1;
+                        if (trans_end >= allTrans.length) trans_end = allTrans.length;
+                        count=0;
+                        for(var line_trans=trans_begin;line_trans<trans_end;line_trans++){
+                            tmp[count]=tmp[count].replace('</div>',"<br><i class='trans_line'>"+ allTrans[line_trans]+"</i></div>");
+                            count++;
+                        }
+                    }
+                }
+                lyric.innerHTML='';
+                for (lines in tmp){
+                    lyric.innerHTML += tmp[lines];
+                }
                 var lyricNow = document.getElementById('__lyric_p_' + lineNow);
-                lyricNow.style.backgroundColor = 'rgba(255,255,255,0.5)';
-                lyricNow.style.fontSize = 'x-large';
-                if(is_mobile) lyricNow.style.height='11vh';
-                else lyricNow.style.height='6vh';
+                lyricNow.classList.add('lyric_now');
                 // console.log(lineNow+" "+ lyric_begin+' to '+lyric_end +" " +allLyrics.length);
 
                 // setTimeout(function () {
                 //     lyric.classList.remove('blur_back');
                 // }, interval);
             }
-            if (transTime) {
-                var transLine = -1;
-                for (line in transTime) {
-                    if (transTime[line] != null) {
-                        if (transTime[line] > x.currentTime) break;
-                        transLine = line;
-                    }
-                }
-                if (transLine >= 0) {
-                    if (is_mobile) {
-                        // document.getElementById('trans_mobile').innerHTML = allTrans[transLine];
-                    } else {
-                        document.getElementById('translate').innerHTML = allTrans[transLine];
-                    }
-                    // console.log(allTrans[transLine]);
-                }
-            }
+
         } else {
-            if (is_mobile) {
-                lyric.innerHTML='No Lyrics';
-            } else {
-                document.getElementById('translate').innerHTML = '';
-                document.getElementById('lyric').innerHTML = '';
-            }
+                lyric.innerHTML='<p class="text-light border-light rounded" style="position: relative; top: 30vh;">No Lyrics</p>';
         }
     }
     // console.log((x.currentTime/x.duration));

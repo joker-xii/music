@@ -229,7 +229,7 @@ function select_song(id, from_album) {
                         var timeStr = y.substr(1, ind - 1);
                         // console.log(timeStr+" "+timeStr.substr(0,2)+" "+timeStr.substr(3));
                         times[cnt] = parseFloat(timeStr.substr(0, 2)) * 60 + parseFloat(timeStr.substr(3));
-                        allLyrics[cnt] = "<p id='__lyric_p_" + cnt + "' style='height: 5vh;border-radius: 5px;'>" + y.substr(ind + 1) + "</p>";
+                        allLyrics[cnt] = "<div id='__lyric_p_" + cnt + "' class='flex-container'>" + y.substr(ind + 1) + "</div>";
                         cnt++;
                     }
                 }

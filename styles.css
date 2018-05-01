@@ -1,26 +1,7 @@
 html, body {
     height: 100%;
-    overflow: hidden;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    /*overflow: visible;*/
+    overflow: auto;
 }
 
 .background-transparent {
@@ -131,17 +112,32 @@ html, body {
     -o-background-size: cover;
     background-size: cover;
     background-position: right;
-    position: absolute;bottom: 0
+    position: fixed;bottom: 0;
 }
 .transparent_back{
     opacity: 0;
 }
+.shadow_card{
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
+}
 
 #table_layer{
     transition: 1s opacity ease-in;
-    position: absolute;
+    position: fixed;
     width: 100vw;height: 100vh ;
     bottom: 0;
     background-color: rgba(255,255,255,0.3);
     opacity: 0;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+.lyric_now{
+    font-size: x-large;
+    background-color: rgba(255,255,255,0.5);
+}
+.trans_line{
+    font-size: small;
 }
