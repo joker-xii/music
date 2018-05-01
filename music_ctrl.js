@@ -55,7 +55,7 @@ function mouse_progress(e) {
 }
 
 
-function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
+function loop(thisId, lyrics, allLyrics,last) {
     if (!(thisId === song_id_now)) {
         console.log('return' + thisId);
         return;
@@ -107,25 +107,25 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
                     // console.log(line_added + ' added');
                 }
 
-                if (transTime) {
-                    var transLine = 0;
-                    for (line in transTime) {
-                        if (transTime[line] != null) {
-                            if (transTime[line] > x.currentTime) break;
-                            transLine = line;
-                        }
-                    }
-                    transLine=parseInt(transLine);
-                    if (transLine !=lastTrans) {
-                        var trans_begin = Math.max(0, transLine - showCnt),trans_end = transLine + showCnt+1;
-                        if (trans_end >= allTrans.length) trans_end = allTrans.length;
-                        count=0;
-                        for(var line_trans=trans_begin;line_trans<trans_end;line_trans++){
-                            if(tmp[count]) tmp[count]=tmp[count].replace('</div>',"<br><i class='trans_line'>"+ allTrans[line_trans]+"</i></div>");
-                            count++;
-                        }
-                    }
-                }
+                // if (transTime) {
+                //     var transLine = 0;
+                //     for (line in transTime) {
+                //         if (transTime[line] != null) {
+                //             if (transTime[line] > x.currentTime) break;
+                //             transLine = line;
+                //         }
+                //     }
+                //     transLine=parseInt(transLine);
+                //     if (transLine !=lastTrans) {
+                //         var trans_begin = Math.max(0, transLine - showCnt),trans_end = transLine + showCnt+1;
+                //         if (trans_end >= allTrans.length) trans_end = allTrans.length;
+                //         count=0;
+                //         for(var line_trans=trans_begin;line_trans<trans_end;line_trans++){
+                //             if(tmp[count]) tmp[count]=tmp[count].replace('</div>',"<br><i class='trans_line'>"+ allTrans[line_trans]+"</i></div>");
+                //             count++;
+                //         }
+                //     }
+                // }
                 lyric.innerHTML='';
                 for (lines in tmp){
                     lyric.innerHTML += tmp[lines];
@@ -146,7 +146,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
     // console.log((x.currentTime/x.duration));
     requestAnimationFrame(function () {
         setTimeout(function () {
-            loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans);
+            loop(thisId, lyrics, allLyrics, last);
         }, interval);
     })
 }
@@ -154,12 +154,10 @@ function validClr() {
     return Math.floor(Math.random()*256);
 }
 function titleChangeColor(elem) {
-    interval=300;
-    elem.style.color = "rgba(" + [validClr(),validClr(),validClr(), 1].join(",") + ")";
+    interval=1000;
+    elem.style.color = "rgb(" + [validClr(),validClr(),validClr()].join(",") + ")";
     // console.log( "rgba(" + [validClr(), validClr(), validClr(), 1].join(",") + ")");
-    requestAnimationFrame(function () {
-        setTimeout(function () {
-            titleChangeColor(elem);
-        }, interval);
-    })
+    setTimeout(function () {
+        titleChangeColor(elem);
+    }, interval);
 }

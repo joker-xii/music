@@ -255,15 +255,31 @@ function select_song(id, from_album) {
                             }
                         }
                     }
+                    var cnt4=0;
+                    for (var cnt3=0;cnt3<cnt;cnt3++){
+                        if(allLyrics[cnt3]) {
+                            cnt4 = 0;
+                            while (Math.abs(times[cnt3] - _trans_times[cnt4]) > 0.01) cnt4++;
+                            if (allTrans[cnt4]) {
+                                allLyrics[cnt3] = allLyrics[cnt3]
+                                    .replace('</div>', "<br><i class='trans_line'>" + allTrans[cnt4] + "</i></div>");
+                            }
+                        }
+                    }
+                    // console.log(allLyrics);
+                    // console.log(times);
                     // console.log(allTrans);
                     // console.log(_trans_times);
-                    loop(id, times, allLyrics, _trans_times, allTrans, -1,-1);
+                    // console.log(allTrans);
+                    // console.log(_trans_times);
+                    loop(id, times, allLyrics,-1);
                 } else {
                     // console.log("no trans");
-                    loop(id, times, allLyrics, null, null, -1,-1);
+                    // loop(id, times, allLyrics, null, null, -1,-1);
+                    loop(id, times, allLyrics,-1);
                 }
             } else {
-                loop(id, null, null, null, null, -1,-1);
+                loop(id, null, null,-1);
             }
 
         }

@@ -61,7 +61,8 @@ html, body {
     /*background:linear-gradient(to bottom,white 30%,transparent);*/
 }
 #various_color_title{
-    transition: 0.3s color linear;
+    transition: 1s color linear;
+    -webkit-transition: 1s color linear;
 }
 .black_layer_5{
     background-color: rgba(0,0,0,0.5);
