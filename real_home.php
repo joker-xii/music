@@ -164,9 +164,10 @@
             </button>
         </div>
         <div style="width: 65vw;">
-            <div class="progress border border-info "
+            <div class="progress border border-info position-relative"
                  style="height: 5vh;background-color: transparent;" id="music_prog_border"
                  onclick="mouse_progress(event)">
+                <span style='color:black;font-size: large;' class="justify-content-center d-flex position-absolute w-100" id='prog_span'></span>
                 <div class="progress-bar progress-bar-striped  bg-info progress-bar-animated jilao"
                      id="music_progress"
                      role="progressbar" style="width: 0%;"></div>

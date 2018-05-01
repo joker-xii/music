@@ -50,17 +50,19 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
         return;
     }
     var interval = 500;
-    var prog = document.getElementById('music_progress');
-    var x = document.getElementById('hoshi_no_uta');
-    prog.style.width = (x.currentTime * 100 / x.duration) + "%";
-    var currTime = Math.floor(x.currentTime);
-    var duration = Math.floor(x.duration);
-    var showCur = '', showDur = '';
-    if (currTime > 60) showCur += Math.floor(currTime / 60) + ':';
-    if (duration > 60) showDur += Math.floor(duration / 60) + ':';
-    showCur += (currTime % 60) < 10 ? ('0' + (currTime % 60)) : (currTime % 60);
-    showDur += (duration % 60) < 10 ? ('0' + (duration % 60)) : (duration % 60);
-    prog.innerHTML = "<span style='color:white;font-size: large;'>" + showCur + '/' + showDur + '<span>';
+        var prog_span=document.getElementById('prog_span');
+        var prog = document.getElementById('music_progress');
+        var x = document.getElementById('hoshi_no_uta');
+        prog.style.width = (x.currentTime * 100 / x.duration) + "%";
+        var currTime = Math.floor(x.currentTime);
+        var duration = Math.floor(x.duration);
+        var showCur = '', showDur = '';
+        if (currTime > 60) showCur += Math.floor(currTime / 60) + ':';
+        if (duration > 60) showDur += Math.floor(duration / 60) + ':';
+        showCur += (currTime % 60) < 10 ? ('0' + (currTime % 60)) : (currTime % 60);
+        showDur += (duration % 60) < 10 ? ('0' + (duration % 60)) : (duration % 60);
+    prog_span.innerHTML = "" + showCur + '/' + showDur ;
+
     if (!paused) {
         var lyric;
         if (is_mobile) {
@@ -108,7 +110,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
                         if (trans_end >= allTrans.length) trans_end = allTrans.length;
                         count=0;
                         for(var line_trans=trans_begin;line_trans<trans_end;line_trans++){
-                            tmp[count]=tmp[count].replace('</div>',"<br><i class='trans_line'>"+ allTrans[line_trans]+"</i></div>");
+                            if(tmp[count]) tmp[count]=tmp[count].replace('</div>',"<br><i class='trans_line'>"+ allTrans[line_trans]+"</i></div>");
                             count++;
                         }
                     }
@@ -118,7 +120,7 @@ function loop(thisId, lyrics, allLyrics, transTime, allTrans, last,lastTrans) {
                     lyric.innerHTML += tmp[lines];
                 }
                 var lyricNow = document.getElementById('__lyric_p_' + lineNow);
-                lyricNow.classList.add('lyric_now');
+                if(lyricNow)lyricNow.classList.add('lyric_now');
                 // console.log(lineNow+" "+ lyric_begin+' to '+lyric_end +" " +allLyrics.length);
 
                 // setTimeout(function () {

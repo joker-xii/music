@@ -81,10 +81,11 @@
             </div>
             <div class="card-body">
 
-                <div class="progress border border-success "
+                <div class="progress border border-success jilao position-relative"
                      style="height: 5vh;background-color: transparent;" id="music_prog_border"
                      onclick="mouse_progress(event)">
-                    <div class="progress-bar progress-bar-striped  bg-success progress-bar-animated jilao"
+                    <span style='color:white; ' class="justify-content-center d-flex position-absolute w-100" id='prog_span'></span>
+                    <div class="progress-bar progress-bar-striped  bg-success progress-bar-animated "
                          id="music_progress"
                          role="progressbar" style="width: 0%;"></div>
                 </div>
@@ -111,8 +112,8 @@
         <div class="collapse" id="song_list" style="width: 90vw;">
         </div>
     </div>
-    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: hidden;text-align: center;">
-        <div class="collapse" id="lyric_mobile" style="width: 91vw;" onclick="showPlayer()">
+    <div style="height: 70vh;padding-top: 0vh;position:absolute;overflow: hidden;text-align: center;" onclick="showPlayer()">
+        <div class="collapse" id="lyric_mobile" style="width: 91vw;" >
         </div>
     </div>
     <div style="position: absolute;overflow: visible; ">

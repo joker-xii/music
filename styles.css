@@ -134,6 +134,9 @@ html, body {
     flex-direction: column;
     border-radius: 5px;
 }
+.lyric_container{
+    min-height:8vh;
+}
 .lyric_now{
     font-size: x-large;
     background-color: rgba(255,255,255,0.5);
