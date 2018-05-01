@@ -91,13 +91,13 @@
                 </div>
                 <hr class="my-1"/>
                 <div class="btn-group btn-block">
-                    <button class="btn btn-outline-info player_btn_mobile btn-block" id="simple_player"
+                    <button class="btn btn-outline-success player_btn_mobile btn-block" id="simple_player"
                             onclick="playOrPause()">
-                        <span id="playing">&#9655;</span>
                         <audio hidden controls id="hoshi_no_uta" loop="loop"
                                style="opacity: 0;z-index: -1;width: 0px;height:0px;">
                             <source id="song_source" type="audio/mpeg">
                         </audio>
+                        <div id="playing" class=" mx-auto pause_btn playing_status"></div>
                     </button>
                     <button type="button" class=" btn btn-outline-primary " data-toggle="modal"
                             data-target="#show_result">

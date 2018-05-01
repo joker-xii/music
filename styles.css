@@ -77,10 +77,29 @@ html, body {
 .player_btn{
     position: absolute;
     width: 16vw;
+    height: 5vh;
     left: 2vw;
-    background-color:rgba(144,238,144,1);
+    /*background-color:rgba(144,238,144,1);*/
     transition: 0.5s background-color ease-in;
 }
+.playing_btn {
+    width: 12px;
+    height: 16px;
+    border-top: 8px solid transparent;
+    border-left: 12px solid yellow;
+    border-bottom: 8px solid transparent;
+}
+.pause_btn {
+    width: 12px;
+    height: 16px;
+    border-right: 4px solid green;
+    border-left: 4px solid green;
+}
+
+.playing_status{
+    box-sizing: border-box;
+}
+
 .player_btn_mobile{
     transition: 0.5s background-color ease-in;
     text-align: center;

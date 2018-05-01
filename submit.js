@@ -212,7 +212,7 @@ function select_song(id, from_album) {
                 document.getElementById('volume').style.width = (x.volume * 100) + "%";
             }
             x.load();
-            x.play();
+            setPlay(true);
             if (!from_album) {
                 get_album(parseInt(obj.song.album.id));
                 var player_select = document.getElementById('player_link');

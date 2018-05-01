@@ -155,8 +155,8 @@
 <div class="navbar fixed-bottom" hidden id="footer" style="opacity: 0">
     <div class="row" style="width: 100vw">
         <div style="width: 20vw;">
-            <button class="btn btn-outline-light player_btn " id="simple_player" onclick="playOrPause()">
-                <span id="playing">&#9655;</span>
+            <button class="btn btn-outline-success player_btn " id="simple_player" onclick="playOrPause()">
+                <div id="playing" class=" mx-auto pause_btn playing_status align-middle" ></div>
                 <audio controls id="hoshi_no_uta" loop="loop"
                        style="opacity: 0;z-index: -1;width: 0px;height:0px;">
                     <source id="song_source" type="audio/mpeg">

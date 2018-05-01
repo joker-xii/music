@@ -1,22 +1,33 @@
-function playOrPause() {
+function setPlay(setplay) {
     var x = document.getElementById('hoshi_no_uta');
     var p = document.getElementById('simple_player');
     var name = document.getElementById('playing');
-    if (x.paused || x.ended) {
+    if (setplay) {
         x.play();
-        name.innerHTML = '&#9655;';
-        if (!is_mobile) {
-            p.style.setProperty('background-color', "rgba(144,238,144,1)");
-        }
+
+        name.classList.add('pause_btn');
+        name.classList.remove('playing_btn');
+        p.classList.remove('btn-outline-warning');
+        p.classList.add('btn-outline-success');
+
         paused = false;
         // console.log("play");
     } else {
         x.pause();
-        name.innerHTML = '&#10072; &#10072;';
-        if (!is_mobile) {
-            p.style.setProperty('background-color', "rgba(255,165,0,1)");
-        }// console.log("pause");
+
+        name.classList.remove('pause_btn');
+        name.classList.add('playing_btn');
+        p.classList.remove('btn-outline-success');
+        p.classList.add('btn-outline-warning');
         paused = true;
+    }
+}
+function playOrPause() {
+    var x = document.getElementById('hoshi_no_uta');
+    if (x.paused || x.ended) {
+        setPlay(true);
+    } else {
+        setPlay(false);
     }
 }
 
