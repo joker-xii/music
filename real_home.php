@@ -6,8 +6,8 @@
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
     <link href="styles.css" media="all" rel="stylesheet"/>
     <link href="scrollbar.css" media="all" rel="stylesheet"/>
-    <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="../favicon_music.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../favicon_music.ico" type="image/x-icon"/>
     <link href="../Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
     <link href="../Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
@@ -15,7 +15,7 @@
     <script type="text/javascript">
         var song_id_now;
         var switch_bg = true;
-        var paused = false;
+        var paused = true;
         var is_mobile = false;
     </script>
     <script type="text/javascript" src="switchbg.js"></script>
@@ -73,28 +73,28 @@
     <div class="collapse" id="player">
         <div class="row">
             <div class='col-sm-3 border-right-1 border-dark'>
-            <div class="card " style="width: 100%;background-color: transparent; border: hidden">
-                <img class="card-img-top rounded" id="song_img" onclick="showAlbum()" alt="Card image cap">
-                <div class="card-body">
-                    <hr class="my-1"/>
-                    <h5 class="card-title" id="song_name"></h5>
-                    <hr class="my-1"/>
-                    <p class="card-text">
-                        <a onclick="showAlbum()" id="album_name">
-                        </a>
-                    </p>
-                    <hr class="my-1"/>
-                    <div class="btn-group btn-block">
-                        <button type="button" class=" btn btn-outline-primary my-2"  data-toggle="modal"
-                                data-target="#show_result">
-                            <i class="fas fa-share-alt"></i>SHARE
-                        </button>
-                        <a id="download_link" class="btn btn-outline-success my-2">
-                                <i class="fas fa-download"></i>DOWNLOAD
-                        </a>
+                <div class="card " style="width: 100%;background-color: transparent; border: hidden">
+                    <img class="card-img-top rounded" id="song_img" onclick="showAlbum()" alt="Card image cap">
+                    <div class="card-body">
+                        <hr class="my-1"/>
+                        <h5 class="card-title" id="song_name"></h5>
+                        <hr class="my-1"/>
+                        <p class="card-text">
+                            <a onclick="showAlbum()" id="album_name">
+                            </a>
+                        </p>
+                        <hr class="my-1"/>
+                        <div class="btn-group-vertical btn-block">
+                            <button type="button" class=" btn btn-outline-primary"  data-toggle="modal"
+                                    data-target="#show_result">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                            <a id="download_link" class="btn btn-outline-success">
+                                    <i class="fas fa-download"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div class="col-sm-offset-1 col-sm-8 ">
                 <div style="height: 70vh;overflow: hidden;padding-top: 5vh;">
@@ -147,8 +147,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <code id="copy_result">CLICK TEXT AREA TO COPY</code>
-                <textarea id="result_text" style="width: 100%" readonly onclick="copyShareLink(this)"></textarea>
+                <div class="btn-group btn-block">
+                    <a class="btn btn-outline-info" id="share_to_qq">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-warning" id="share_to_qzone">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" id="share_to_weibo">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a class="btn btn-outline-primary" id="share_to_fb">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-outline-success" id="share_to_gplus">
+                        <i class="fab fa-google-plus"></i>
+                    </a>
+<!--                    <a class="btn btn-outline-secondary" id="copy_link"></a>-->
+                </div>
 
             </div>
             <div class="modal-footer">

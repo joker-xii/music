@@ -24,10 +24,12 @@ function setPlay(setplay) {
 }
 function playOrPause() {
     var x = document.getElementById('hoshi_no_uta');
-    if (x.paused || x.ended) {
-        setPlay(true);
-    } else {
-        setPlay(false);
+    if (song_id_now) {
+        if (x.paused || x.ended) {
+            setPlay(true);
+        } else {
+            setPlay(false);
+        }
     }
 }
 

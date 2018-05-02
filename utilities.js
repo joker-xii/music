@@ -153,6 +153,36 @@ function getShareLink(id) {
     var href = window.location.href;
     return href.substr(0, href.lastIndexOf('/')) + "/?song=" + id;
 }
+function setShare(href,title,site,pics) {
+    var qzone='https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+href+"&title="+title+'&pics='+pics;
+    var weibo='https://service.weibo.com/share/share.php?url='+href+'&title='+title+'&pic='+pics+'&searchPic=false&ralateUid=&language=zh_cn';
+    //http://service.weibo.com/share/share.php?url= &title= &pic= &searchPic=false&ralateUid=&language=zh_cn
+    var facebook='https://www.facebook.com/sharer/sharer.php?u='+href;
+    var qqlink='https://connect.qq.com/widget/shareqq/index.html?url='+href+'&title='+title+'&site='+site+'&pics='+pics;
+    var googleplus="https://plus.google.com/share?url="+href;
+    document.getElementById('share_to_qq').href=qqlink;
+    document.getElementById('share_to_qzone').href=qzone;
+    document.getElementById('share_to_fb').href=facebook;
+    document.getElementById('share_to_weibo').href=weibo;
+    document.getElementById('share_to_gplus').href=googleplus;
+    
+/*             <a class="btn btn-outline-info" id="share_to_qq">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-warning" id="share_to_qzone">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" id="share_to_weibo">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a class="btn btn-outline-primary" id="share_to_fb">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-outline-success" id="share_to_gplus">
+                        <i class="fab fa-google-plus"></i>
+                    </a>
+* */
+}
 
 function select_song(id, from_album) {
 
@@ -199,14 +229,12 @@ function select_song(id, from_album) {
                     }
                 }
             }
-            document.getElementById('result_title').innerHTML = 'SHARE 「' + obj.song.name + '」';
+            var title;
+            document.getElementById('result_title').innerHTML =title= 'SHARE 「' + obj.song.name + '」';
             var href = getShareLink(obj.song.id);
             var share = document.getElementById('result_text');
-            if (is_mobile){
-                share.href=href;
-            }else {
-                share.innerHTML = href;
-            }
+            setShare(href,title,'https://joker.services/music/',obj.song.album.picUrl);
+            window.history.pushState(null,document.title,'?song='+obj.song.id);
             showPlayer();
             if (!is_mobile) document.getElementById('footer').removeAttribute('hidden');
             var x = document.getElementById('hoshi_no_uta');
@@ -221,6 +249,7 @@ function select_song(id, from_album) {
                 var player_select = document.getElementById('player_link');
                 player_select.removeAttribute('hidden');
             }
+
             if (obj.song.lyrics) {
                 var lyric_strings = obj.song.lyrics.split('\n');
                 var times = new Array(), allLyrics = new Array();

@@ -4,20 +4,21 @@
     <meta charset="utf-8"/>
     <title>MUSIC</title>
     <link href="../Content/bootstrap.css" rel="stylesheet"/>
-    <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="../favicon_music.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../favicon_music.ico" type="image/x-icon"/>
     <link href="../Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
     <link href="../Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
-    <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
         var switch_bg = true;
         var paused = true;
         var is_mobile = true;
     </script>
-    <!--    <script type="text/javascript" src="switchbg.js"></script>-->
+    <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.bundle.js"></script>
     <script src="utilities.js" type="text/javascript"></script>
+    <script type="text/javascript" src="music_ctrl.js"></script>
     <link href="styles.css" media="all" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
@@ -28,7 +29,6 @@
 
 <div id="table_layer" onclick="tryShowPlayer()" style="z-index: -1;"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
-<script type="text/javascript" src="music_ctrl.js"></script>
 <nav class="navbar navbar-collapse navbar-dark navbar_effect_mobile" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 >
             <i id="various_color_title" class="fas fa-music" style="color:white"></i> <code >MUSIC</code>
@@ -145,7 +145,6 @@
         </div>
     </div>
 
-    <!--    </div>-->
 </div>
 <div class="modal fade" id="show_result" tabindex="-1" role="dialog" aria-labelledby="show_result" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -159,9 +158,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <code>SHARE THIS LINK</code>
-                <a id="result_text" style="width: 100%" class="btn btn-outline-danger btn-block" >SHARE LINK</a>
-
+                <div class="btn-group btn-block">
+                    <a class="btn btn-outline-info" id="share_to_qq">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-warning" id="share_to_qzone">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                    <a class="btn btn-outline-danger" id="share_to_weibo">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a class="btn btn-outline-primary" id="share_to_fb">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-outline-success" id="share_to_gplus">
+                        <i class="fab fa-google-plus"></i>
+                    </a>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -169,13 +182,6 @@
         </div>
     </div>
 </div>
-<script src="../Scripts/bootstrap.js"></script>
 
-<!--<script src="firestar2.js"></script>-->
-<!--<script type="text/javascript">-->
-<!--    var fireStar = new FireStars();-->
-<!--    fireStar.set(document.getElementById("screen"), 1, 1600);-->
-<!--    fireStar.animate();-->
-<!--</script>-->
 </body>
 </html>
