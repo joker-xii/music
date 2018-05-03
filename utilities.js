@@ -77,7 +77,7 @@ function showLyricsMobile() {
 function get_album(id) {
     $.ajax({
         type: 'post',
-        url: "/music/",
+        url: "https://joker.services/music/",
         data: '&album_id=' + id,
         success: function (data) {
             var docList = document.getElementById('album_list_items');
@@ -135,7 +135,7 @@ function setBackPc(aback, picUrl) {
 function setBack(aback, picId, picUrl) {
     $.ajax({
         type: "post",
-        url: '/music/',
+        url: 'https://joker.services/music/',
         data: '&blur_pic_redirect=' + picId,
         success: function (data) {
             // console.log(data);
@@ -189,7 +189,7 @@ function select_song(id, from_album) {
     song_id_now = id;
     $.ajax({
         type: "post",
-        url: '/music/',
+        url: 'https://joker.services/music/',
         data: '&id=' + id,
         success: function (ret) {
             var obj = JSON.parse(ret);
@@ -323,7 +323,7 @@ function submitForm() {
     var data = form.serialize();
     $.ajax({
         type: form.attr('method'),
-        url: "/music/",
+        url: "https://joker.services/music/",
         data: data,
         success: function (data) {
             // setSwitch(true);

@@ -3,23 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <title>MUSIC</title>
-    <link href="../Content/bootstrap.css" rel="stylesheet"/>
+    <link href="https://resources.joker.services/Content/bootstrap.css" rel="stylesheet"/>
     <link href="styles.css" media="all" rel="stylesheet"/>
     <link href="scrollbar.css" media="all" rel="stylesheet"/>
-    <link rel="icon" href="../favicon_music.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="../favicon_music.ico" type="image/x-icon"/>
-    <link href="../Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
-    <link href="../Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
+    <link rel="icon" href="https://resources.joker.services/favicon_music.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://resources.joker.services/favicon_music.ico" type="image/x-icon"/>
+    <link href="https://resources.joker.services/Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
+    <link href="https://resources.joker.services/Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
-    <script type="text/javascript" src="../Scripts/jquery-3.1.1.js"></script>
     <script type="text/javascript">
         var song_id_now;
         var switch_bg = true;
         var paused = true;
         var is_mobile = false;
     </script>
-    <script type="text/javascript" src="switchbg.js"></script>
-    <script src="utilities.js" type="text/javascript"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
 </head>
@@ -205,13 +202,16 @@
         </div>
     </div>
 </div>
-<script src="../Scripts/bootstrap.js"></script>
-
+<script src="https://resources.joker.services/Scripts/bootstrap.js"></script>
+<script type="text/javascript" src="https://resources.joker.services/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="switchbg.js"></script>
+<script src="utilities.js" type="text/javascript"></script>
 <!--<script src="firestar2.js"></script>-->
 <!--<script type="text/javascript">-->
 <!--    var fireStar = new FireStars();-->
 <!--    fireStar.set(document.getElementById("screen"), 1, 1600);-->
 <!--    fireStar.animate();-->
 <!--</script>-->
+
 </body>
 </html>
