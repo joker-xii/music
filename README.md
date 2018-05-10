@@ -1,3 +1,3 @@
 # music
 Play music in
-https://joker.services/music/
+https://joker.im/music/
