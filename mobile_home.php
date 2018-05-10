@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8"/>
     <title>MUSIC</title>
-    <link href="https://resources.joker.services/Content/bootstrap.css" rel="stylesheet"/>
-    <link rel="icon" href="https://resources.joker.services/favicon_music.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="https://resources.joker.services/favicon_music.ico" type="image/x-icon"/>
-    <link href="https://resources.joker.services/Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
-    <link href="https://resources.joker.services/Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
+    <link href="https://res.joker.im/Content/bootstrap.css" rel="stylesheet"/>
+    <link rel="icon" href="https://res.joker.im/favicon_music.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://res.joker.im/favicon_music.ico" type="image/x-icon"/>
+    <link href="https://res.joker.im/Fonts/css/fontawesome.css" media="all" rel="stylesheet"/>
+    <link href="https://res.joker.im/Fonts/css/fontawesome-all.css" media="all" rel="stylesheet"/>
     <meta name="description" content="Music Box by Joker"/>
     <script type="text/javascript">
         var song_id_now;
@@ -179,8 +179,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://resources.joker.services/Scripts/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="https://resources.joker.services/Scripts/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="https://res.joker.im/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://res.joker.im/Scripts/bootstrap.bundle.js"></script>
 <script src="utilities.js" type="text/javascript"></script>
 <script type="text/javascript" src="music_ctrl.js"></script>
 </body>
