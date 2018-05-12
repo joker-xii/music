@@ -28,7 +28,6 @@
 <div id="table_layer"></div>
 <!--    <canvas id="screen" width="1300" height="700" style="position: fixed;bottom: 0px;left: 0px;z-index:-1 "></canvas>-->
 <script type="text/javascript" src="music_ctrl.js">
-
 </script>
 <nav class="navbar navbar-expand-sm navbar-light navbar_effect" id="navbar">
     <a class="navbar-brand" onclick="hideall()"><h1 style="color: black;">
@@ -43,7 +42,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="player_link" onclick="showPlayer()" hidden>PLAYER
-<!--                    <span class="sr-only">(current)</span></button>-->
+                    <!--                    <span class="sr-only">(current)</span></button>-->
             </li>
             <li class="nav-item active">
                 <button class="nav-link btn btn-link" id="album_link" onclick="showAlbum()" hidden>
@@ -87,7 +86,7 @@
                                 <i class="fas fa-share-alt"></i>
                             </button>
                             <a id="download_link" class="btn btn-outline-success">
-                                    <i class="fas fa-download"></i>
+                                <i class="fas fa-download"></i>
                             </a>
                         </div>
                     </div>
@@ -160,7 +159,7 @@
                     <a class="btn btn-outline-success" id="share_to_gplus">
                         <i class="fab fa-google-plus"></i>
                     </a>
-<!--                    <a class="btn btn-outline-secondary" id="copy_link"></a>-->
+                    <!--                    <a class="btn btn-outline-secondary" id="copy_link"></a>-->
                 </div>
 
             </div>
@@ -202,8 +201,8 @@
         </div>
     </div>
 </div>
-<script src="https://res.joker.im/Scripts/bootstrap.js"></script>
-<script type="text/javascript" src="https://res.joker.im/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="https://res.joker.im/Scripts/jquery-3.1.1.min.js"></script>
+<script src="https://res.joker.im/Scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="switchbg.js"></script>
 <script src="utilities.js" type="text/javascript"></script>
 <!--<script src="firestar2.js"></script>-->
