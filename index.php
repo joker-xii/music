@@ -1,5 +1,6 @@
 <?php
-ini_set('display_errors', 'On');
+// ini_set('display_errors', 'On');
+error_reporting(0);
 include "netease.php";
 function isMobile() {
     // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
